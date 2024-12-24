@@ -1,0 +1,16 @@
+D:\C#Projects\RolePolicy\RolePolicy.Application\bin\Debug\net8.0\RolePolicy.Application.deps.json
+D:\C#Projects\RolePolicy\RolePolicy.Application\bin\Debug\net8.0\RolePolicy.Application.dll
+D:\C#Projects\RolePolicy\RolePolicy.Application\bin\Debug\net8.0\RolePolicy.Application.pdb
+D:\C#Projects\RolePolicy\RolePolicy.Application\bin\Debug\net8.0\RolePolicy.Domain.dll
+D:\C#Projects\RolePolicy\RolePolicy.Application\bin\Debug\net8.0\RolePolicy.Domain.pdb
+D:\C#Projects\RolePolicy\RolePolicy.Application\obj\Debug\net8.0\RolePolicy.Application.csproj.AssemblyReference.cache
+D:\C#Projects\RolePolicy\RolePolicy.Application\obj\Debug\net8.0\RolePolicy.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\C#Projects\RolePolicy\RolePolicy.Application\obj\Debug\net8.0\RolePolicy.Application.AssemblyInfoInputs.cache
+D:\C#Projects\RolePolicy\RolePolicy.Application\obj\Debug\net8.0\RolePolicy.Application.AssemblyInfo.cs
+D:\C#Projects\RolePolicy\RolePolicy.Application\obj\Debug\net8.0\RolePolicy.Application.csproj.CoreCompileInputs.cache
+D:\C#Projects\RolePolicy\RolePolicy.Application\obj\Debug\net8.0\RolePolicy.Application.sourcelink.json
+D:\C#Projects\RolePolicy\RolePolicy.Application\obj\Debug\net8.0\RolePoli.050C499B.Up2Date
+D:\C#Projects\RolePolicy\RolePolicy.Application\obj\Debug\net8.0\RolePolicy.Application.dll
+D:\C#Projects\RolePolicy\RolePolicy.Application\obj\Debug\net8.0\refint\RolePolicy.Application.dll
+D:\C#Projects\RolePolicy\RolePolicy.Application\obj\Debug\net8.0\RolePolicy.Application.pdb
+D:\C#Projects\RolePolicy\RolePolicy.Application\obj\Debug\net8.0\ref\RolePolicy.Application.dll

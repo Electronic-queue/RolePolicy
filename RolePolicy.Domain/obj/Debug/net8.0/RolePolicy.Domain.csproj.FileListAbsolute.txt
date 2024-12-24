@@ -1,0 +1,12 @@
+D:\C#Projects\RolePolicy\RolePolicy.Domain\bin\Debug\net8.0\RolePolicy.Domain.deps.json
+D:\C#Projects\RolePolicy\RolePolicy.Domain\bin\Debug\net8.0\RolePolicy.Domain.dll
+D:\C#Projects\RolePolicy\RolePolicy.Domain\bin\Debug\net8.0\RolePolicy.Domain.pdb
+D:\C#Projects\RolePolicy\RolePolicy.Domain\obj\Debug\net8.0\RolePolicy.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\C#Projects\RolePolicy\RolePolicy.Domain\obj\Debug\net8.0\RolePolicy.Domain.AssemblyInfoInputs.cache
+D:\C#Projects\RolePolicy\RolePolicy.Domain\obj\Debug\net8.0\RolePolicy.Domain.AssemblyInfo.cs
+D:\C#Projects\RolePolicy\RolePolicy.Domain\obj\Debug\net8.0\RolePolicy.Domain.csproj.CoreCompileInputs.cache
+D:\C#Projects\RolePolicy\RolePolicy.Domain\obj\Debug\net8.0\RolePolicy.Domain.sourcelink.json
+D:\C#Projects\RolePolicy\RolePolicy.Domain\obj\Debug\net8.0\RolePolicy.Domain.dll
+D:\C#Projects\RolePolicy\RolePolicy.Domain\obj\Debug\net8.0\refint\RolePolicy.Domain.dll
+D:\C#Projects\RolePolicy\RolePolicy.Domain\obj\Debug\net8.0\RolePolicy.Domain.pdb
+D:\C#Projects\RolePolicy\RolePolicy.Domain\obj\Debug\net8.0\ref\RolePolicy.Domain.dll

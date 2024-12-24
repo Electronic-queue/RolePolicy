@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "H6lb7xfKLWnBIsFKmBP8jva8aW0YA3c3ZtcRC/b0AMo=",
+  "Source": "RolePolicy.WebApi",
+  "BasePath": "_content/RolePolicy.WebApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "RolePolicy.Application/1.0.0": {
+        "dependencies": {
+          "RolePolicy.Domain": "1.0.0"
+        },
+        "runtime": {
+          "RolePolicy.Application.dll": {}
+        }
+      },
+      "RolePolicy.Domain/1.0.0": {
+        "runtime": {
+          "RolePolicy.Domain.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "RolePolicy.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RolePolicy.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
