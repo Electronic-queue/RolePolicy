@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RolePolicy.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+16d7b3466dcc1067e28d7a5964d10e07793c2241")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+724d2a633c801e0ddf168e359879f2b5df9b77e8")]
 [assembly: System.Reflection.AssemblyProductAttribute("RolePolicy.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RolePolicy.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

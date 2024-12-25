@@ -10,3 +10,4 @@ D:\C#Projects\RolePolicy\RolePolicy.Domain\obj\Debug\net8.0\RolePolicy.Domain.dl
 D:\C#Projects\RolePolicy\RolePolicy.Domain\obj\Debug\net8.0\refint\RolePolicy.Domain.dll
 D:\C#Projects\RolePolicy\RolePolicy.Domain\obj\Debug\net8.0\RolePolicy.Domain.pdb
 D:\C#Projects\RolePolicy\RolePolicy.Domain\obj\Debug\net8.0\ref\RolePolicy.Domain.dll
+D:\C#Projects\RolePolicy\RolePolicy.Domain\obj\Debug\net8.0\RolePolicy.Domain.csproj.AssemblyReference.cache

@@ -1,8 +1,22 @@
 {
   "version": 2,
-  "dgSpecHash": "QAmIDFbVK5c=",
+  "dgSpecHash": "QqybLEkk6gE=",
   "success": true,
   "projectFilePath": "D:\\C#Projects\\RolePolicy\\RolePolicy.Application\\RolePolicy.Application.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\malik\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
+    "C:\\Users\\malik\\.nuget\\packages\\fluentvalidation\\11.11.0\\fluentvalidation.11.11.0.nupkg.sha512",
+    "C:\\Users\\malik\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.11.0\\fluentvalidation.dependencyinjectionextensions.11.11.0.nupkg.sha512",
+    "C:\\Users\\malik\\.nuget\\packages\\kds.primitives.abstraction\\1.0.0\\kds.primitives.abstraction.1.0.0.nupkg.sha512",
+    "C:\\Users\\malik\\.nuget\\packages\\kds.primitives.fluentapiresponse\\1.0.0\\kds.primitives.fluentapiresponse.1.0.0.nupkg.sha512",
+    "C:\\Users\\malik\\.nuget\\packages\\kds.primitives.fluentresult\\1.0.0\\kds.primitives.fluentresult.1.0.0.nupkg.sha512",
+    "C:\\Users\\malik\\.nuget\\packages\\mediatr\\11.0.0\\mediatr.11.0.0.nupkg.sha512",
+    "C:\\Users\\malik\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",
+    "C:\\Users\\malik\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\11.0.0\\mediatr.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
+    "C:\\Users\\malik\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\malik\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
+    "C:\\Users\\malik\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "C:\\Users\\malik\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

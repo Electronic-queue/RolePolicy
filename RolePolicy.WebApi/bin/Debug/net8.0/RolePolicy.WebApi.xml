@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RolePolicy.WebApi</name>
+    </assembly>
+    <members>
+        <member name="M:RolePolicy.WebApi.Controllers.ActionController.GetAll">
+            <summary>
+            Получение списка всех действий.
+            </summary>
+            <returns>Возвращает список всех действий.</returns>
+        </member>
+        <member name="M:RolePolicy.WebApi.Controllers.ActionController.GetById(System.Int32)">
+            <summary>
+            Получение действия по id.
+            </summary>
+            <param name="id"></param>
+            <returns>Возвращает действие по id.</returns>
+        </member>
+        <member name="M:RolePolicy.WebApi.Controllers.ActionController.Create(RolePolicy.WebApi.Contracts.ActionsContracts.CreateActionDto)">
+            <summary>
+            Создание нового действия.
+            </summary>
+            <param name="createActionDto"></param>
+            <returns>Возвращает результат команды добавления нового действия.</returns>
+        </member>
+        <member name="M:RolePolicy.WebApi.Controllers.ActionController.Update(RolePolicy.WebApi.Contracts.ActionsContracts.UpdateActionDto)">
+            <summary>
+            Обновление информации о действии.
+            </summary>
+            <param name="updateActionDto"></param>
+            <returns>Возвращает результат выполнения команды обновления действия.</returns>
+        </member>
+        <member name="M:RolePolicy.WebApi.Controllers.ActionController.Delete(System.Int32)">
+            <summary>
+            Удаление действия по id.
+            </summary>
+            <param name="id"></param>
+            <returns>Возвращает результат удаления действия.</returns>
+        </member>
+    </members>
+</doc>

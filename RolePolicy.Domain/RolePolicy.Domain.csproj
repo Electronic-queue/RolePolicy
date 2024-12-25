@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="KDS.Primitives.Abstraction" Version="1.0.0" />
+    <PackageReference Include="KDS.Primitives.FluentApiResponse" Version="1.0.0" />
+    <PackageReference Include="KDS.Primitives.FluentResult" Version="1.0.0" />
+  </ItemGroup>
+
 </Project>

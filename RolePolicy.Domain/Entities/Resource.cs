@@ -1,4 +1,4 @@
-﻿namespace RolePolicy.Persistence;
+﻿namespace RolePolicy.Domain.Entities;
 
 public partial class Resource
 {

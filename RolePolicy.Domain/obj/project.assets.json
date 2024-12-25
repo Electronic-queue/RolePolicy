@@ -1,11 +1,86 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {}
+    "net8.0": {
+      "KDS.Primitives.Abstraction/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/KDS.Primitives.Abstraction.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/KDS.Primitives.Abstraction.dll": {}
+        }
+      },
+      "KDS.Primitives.FluentApiResponse/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "KDS.Primitives.Abstraction": "1.0.0"
+        },
+        "compile": {
+          "lib/net6.0/KDS.Primitives.FluentApiResponse.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/KDS.Primitives.FluentApiResponse.dll": {}
+        }
+      },
+      "KDS.Primitives.FluentResult/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "KDS.Primitives.Abstraction": "1.0.0"
+        },
+        "compile": {
+          "lib/net6.0/KDS.Primitives.FluentResult.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/KDS.Primitives.FluentResult.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "KDS.Primitives.Abstraction/1.0.0": {
+      "sha512": "2fiMWbt9MfvZZBvaTdxPOBbGkoH2byPakwLxgInHc6hfaDq0OTkoE7DLk9BpwQDClWJcwqeh7p5YtnBmnuMLKg==",
+      "type": "package",
+      "path": "kds.primitives.abstraction/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "kds.primitives.abstraction.1.0.0.nupkg.sha512",
+        "kds.primitives.abstraction.nuspec",
+        "lib/net6.0/KDS.Primitives.Abstraction.dll"
+      ]
+    },
+    "KDS.Primitives.FluentApiResponse/1.0.0": {
+      "sha512": "mhMBDOFV928Hp37nfV1xuCkQjUJHAIb4sWmOBaq4oruwuLDF43b2iWL99eIoRvEl+9Q+4UCUlSiLOrNKCJ2kgg==",
+      "type": "package",
+      "path": "kds.primitives.fluentapiresponse/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "kds.primitives.fluentapiresponse.1.0.0.nupkg.sha512",
+        "kds.primitives.fluentapiresponse.nuspec",
+        "lib/net6.0/KDS.Primitives.FluentApiResponse.dll"
+      ]
+    },
+    "KDS.Primitives.FluentResult/1.0.0": {
+      "sha512": "hnz4QVvV8XtVqJi1FMNkSGsDAczzCMljHgFUCLqBGDpXqPhaIUdtrH9S8tMeJU+YOAXIhG3uW+/oW19J2pHprw==",
+      "type": "package",
+      "path": "kds.primitives.fluentresult/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "kds.primitives.fluentresult.1.0.0.nupkg.sha512",
+        "kds.primitives.fluentresult.nuspec",
+        "lib/net6.0/KDS.Primitives.FluentResult.dll"
+      ]
+    }
+  },
   "projectFileDependencyGroups": {
-    "net8.0": []
+    "net8.0": [
+      "KDS.Primitives.Abstraction >= 1.0.0",
+      "KDS.Primitives.FluentApiResponse >= 1.0.0",
+      "KDS.Primitives.FluentResult >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\malik\\.nuget\\packages\\": {}
@@ -51,6 +126,20 @@
     "frameworks": {
       "net8.0": {
         "targetAlias": "net8.0",
+        "dependencies": {
+          "KDS.Primitives.Abstraction": {
+            "target": "Package",
+            "version": "[1.0.0, )"
+          },
+          "KDS.Primitives.FluentApiResponse": {
+            "target": "Package",
+            "version": "[1.0.0, )"
+          },
+          "KDS.Primitives.FluentResult": {
+            "target": "Package",
+            "version": "[1.0.0, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",

@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "4sJdM2Hye/I=",
+  "dgSpecHash": "YzpEadSvKUQ=",
   "success": true,
   "projectFilePath": "D:\\C#Projects\\RolePolicy\\RolePolicy.Domain\\RolePolicy.Domain.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\malik\\.nuget\\packages\\kds.primitives.abstraction\\1.0.0\\kds.primitives.abstraction.1.0.0.nupkg.sha512",
+    "C:\\Users\\malik\\.nuget\\packages\\kds.primitives.fluentapiresponse\\1.0.0\\kds.primitives.fluentapiresponse.1.0.0.nupkg.sha512",
+    "C:\\Users\\malik\\.nuget\\packages\\kds.primitives.fluentresult\\1.0.0\\kds.primitives.fluentresult.1.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

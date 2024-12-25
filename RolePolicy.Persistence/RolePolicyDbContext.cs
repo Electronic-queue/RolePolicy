@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RolePolicy.Domain.Entities;
+using Action = RolePolicy.Domain.Entities.Action;
 
 namespace RolePolicy.Persistence;
 

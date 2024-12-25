@@ -11,13 +11,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentetion", "Presentetio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{94BC7AC8-AC36-4D7E-A2B6-EED4B0104038}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RolePolicy.WebApi", "..\RolePolicy.WebApi\RolePolicy.WebApi.csproj", "{87EAEFA8-76FA-4A44-A8E2-E7E223D2DA3D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RolePolicy.WebApi", "..\RolePolicy.WebApi\RolePolicy.WebApi.csproj", "{87EAEFA8-76FA-4A44-A8E2-E7E223D2DA3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RolePolicy.Persistence", "..\RolePolicy.Persistence\RolePolicy.Persistence.csproj", "{AE6984D8-4155-42CC-B133-EB621A6E1E78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RolePolicy.Persistence", "..\RolePolicy.Persistence\RolePolicy.Persistence.csproj", "{AE6984D8-4155-42CC-B133-EB621A6E1E78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RolePolicy.Domain", "..\RolePolicy.Domain\RolePolicy.Domain.csproj", "{29FCE8B6-3981-4B9E-91CC-2791BEDD4149}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RolePolicy.Domain", "..\RolePolicy.Domain\RolePolicy.Domain.csproj", "{29FCE8B6-3981-4B9E-91CC-2791BEDD4149}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RolePolicy.Application", "..\RolePolicy.Application\RolePolicy.Application.csproj", "{9171CC41-B4B9-491D-9146-B7D2206A65A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RolePolicy.Application", "..\RolePolicy.Application\RolePolicy.Application.csproj", "{9171CC41-B4B9-491D-9146-B7D2206A65A2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{657419AE-ABE8-4EA4-A21E-09FF2E018452}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
