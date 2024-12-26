@@ -26,11 +26,4 @@
     <ProjectReference Include="..\RolePolicy.Persistence\RolePolicy.Persistence.csproj" />
   </ItemGroup>
 
-	
-  <ItemGroup>
-    <Folder Include="Common\RoleAccessProfile\" />
-    <Folder Include="Common\RoleProfile\" />
-    <Folder Include="Common\RoleResourceActionProfile\" />
-  </ItemGroup>
-
 </Project>

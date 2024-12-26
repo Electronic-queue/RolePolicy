@@ -6,4 +6,4 @@ public record CreateUserDto(
     string? Surname,
     string Login,
     string PasswordHash,
-    int CreatedBy);
+    int? CreatedBy);

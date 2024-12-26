@@ -22,7 +22,7 @@ public class ResourceController : BaseController
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult<List<ResourceListVm>>> GetAll()
     {
-        var query = new GetResourceListQuery();
+        var query = new GetRoleAccessListQuery();
         var result = await Mediator.Send(query);
         if (result.IsFailed)
         {

@@ -6,8 +6,10 @@ using RolePolicy.Persistence;
 using RolePolicy.WebApi;
 using RolePolicy.WebApi.Common.ActionProfile;
 using RolePolicy.WebApi.Common.ResourceProfile;
+using RolePolicy.WebApi.Common.RoleAccessProfile;
+using RolePolicy.WebApi.Common.RoleProfile;
+using RolePolicy.WebApi.Common.RoleResourceActionProfile;
 using RolePolicy.WebApi.Common.UserProfile;
-using RolePolicy.WebApi.Middlewares;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
 
@@ -21,6 +23,9 @@ builder.Services.AddAutoMapper(config =>
     config.AddProfile(typeof(ActionProfile));
     config.AddProfile(typeof(ResourceProfile));
     config.AddProfile(typeof(UserProfile));
+    config.AddProfile(typeof(RoleProfile));
+    config.AddProfile(typeof(RoleAccessProfile));
+    config.AddProfile(typeof(RoleResourceActionProfile));
 });
 
 builder.Services.AddApplication();

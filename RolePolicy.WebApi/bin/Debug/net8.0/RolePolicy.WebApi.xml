@@ -72,6 +72,108 @@
             <param name="id"></param>
             <returns>Возвращает результат удаления ресурса.</returns>
         </member>
+        <member name="M:RolePolicy.WebApi.Controllers.RoleAccessController.GetAll">
+            <summary>
+            Получение списка всех предоставлений ролей.
+            </summary>
+            <returns>Возвращает список всех предоставлений ролей.</returns>
+        </member>
+        <member name="M:RolePolicy.WebApi.Controllers.RoleAccessController.GetById(System.Int32)">
+            <summary>
+            Получение предоставления роли по id.
+            </summary>
+            <param name="id"></param>
+            <returns>Возвращает предоставление роли по id.</returns>
+        </member>
+        <member name="M:RolePolicy.WebApi.Controllers.RoleAccessController.Create(RolePolicy.WebApi.Contracts.RoleAccessesContracts.CreateRoleAccessDto)">
+            <summary>
+            Создание нового предоставления роли.
+            </summary>
+            <param name="createRoleAccessDto"></param>
+            <returns>Возвращает результат команды добавления нового предоставления роли.</returns>
+        </member>
+        <member name="M:RolePolicy.WebApi.Controllers.RoleAccessController.Update(RolePolicy.WebApi.Contracts.RoleAccessesContracts.UpdateRoleAccessDto)">
+            <summary>
+            Обновление информации о предоставлении роли.
+            </summary>
+            <param name="updateRoleAccessDto"></param>
+            <returns>Возвращает результат выполнения команды обновления предоставления роли.</returns>
+        </member>
+        <member name="M:RolePolicy.WebApi.Controllers.RoleAccessController.Delete(System.Int32)">
+            <summary>
+            Удаление предоставления роли по id.
+            </summary>
+            <param name="id"></param>
+            <returns>Возвращает результат удаления предоставления роли.</returns>
+        </member>
+        <member name="M:RolePolicy.WebApi.Controllers.RoleController.GetAll">
+            <summary>
+            Получение списка всех ролей.
+            </summary>
+            <returns>Возвращает список всех ролей.</returns>
+        </member>
+        <member name="M:RolePolicy.WebApi.Controllers.RoleController.GetById(System.Int32)">
+            <summary>
+            Получение роли по id.
+            </summary>
+            <param name="id"></param>
+            <returns>Возвращает роль по id.</returns>
+        </member>
+        <member name="M:RolePolicy.WebApi.Controllers.RoleController.Create(RolePolicy.WebApi.Contracts.RolesContracts.CreateRoleDto)">
+            <summary>
+            Создание новой роли.
+            </summary>
+            <param name="createRoleDto"></param>
+            <returns>Возвращает результат команды добавления новой роли.</returns>
+        </member>
+        <member name="M:RolePolicy.WebApi.Controllers.RoleController.Update(RolePolicy.WebApi.Contracts.RolesContracts.UpdateRoleDto)">
+            <summary>
+            Обновление информации о роли.
+            </summary>
+            <param name="updateRoleDto"></param>
+            <returns>Возвращает результат выполнения команды обновления роли.</returns>
+        </member>
+        <member name="M:RolePolicy.WebApi.Controllers.RoleController.Delete(System.Int32)">
+            <summary>
+            Удаление роли по id.
+            </summary>
+            <param name="id"></param>
+            <returns>Возвращает результат удаления роли.</returns>
+        </member>
+        <member name="M:RolePolicy.WebApi.Controllers.RoleResourceActionController.GetAll">
+            <summary>
+            Получение списка всех связей роли и действий над ресурсами.
+            </summary>
+            <returns>Возвращает список всех связей роли и действий над ресурсами.</returns>
+        </member>
+        <member name="M:RolePolicy.WebApi.Controllers.RoleResourceActionController.GetById(System.Int32)">
+            <summary>
+            Получение связи роли и действий над ресурсами по id.
+            </summary>
+            <param name="id"></param>
+            <returns>Возвращает связь роли и действий над ресурсами по id.</returns>
+        </member>
+        <member name="M:RolePolicy.WebApi.Controllers.RoleResourceActionController.Create(RolePolicy.WebApi.Contracts.RoleResourceActionsContracts.CreateRoleResourceActionDto)">
+            <summary>
+            Создание новой связи роли и действий над ресурсами.
+            </summary>
+            <param name="createRoleResourceActionDto"></param>
+            <returns>Возвращает результат команды добавления новой связи роли и действий над ресурсами.</returns>
+        </member>
+        <member name="M:RolePolicy.WebApi.Controllers.RoleResourceActionController.Update(RolePolicy.WebApi.Contracts.RoleResourceActionsContracts.UpdateRoleResourceActionDto)">
+            <summary>
+            Обновление информации о связи роли и действий над ресурсами.
+            </summary>
+            <param name="updateRoleResourceActionDto"></param>
+            <returns>Возвращает результат выполнения команды обновления связи роли и действий над ресурсами.</returns>
+        </member>
+        <member name="M:RolePolicy.WebApi.Controllers.RoleResourceActionController.Delete(System.Int32)">
+            <summary>
+            Удаление связи роли и действий над ресурсами по id.
+            </summary>
+            <param name="id"></param>
+            <returns>Возвращает результат удаления связи роли и действий над ресурсами.</returns>
+        </member>
         <member name="M:RolePolicy.WebApi.Controllers.UserController.GetAll">
             <summary>
             Получение списка всех пользователей.

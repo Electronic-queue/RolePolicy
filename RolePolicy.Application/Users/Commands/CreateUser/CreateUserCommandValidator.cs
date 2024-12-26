@@ -27,7 +27,6 @@ public class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
             .NotEmpty().WithMessage("PasswordHash обязательно.");
 
         RuleFor(x => x.CreatedBy)
-            .GreaterThan(0).WithMessage("CreatedBy должен быть больше нуля.")
-            .NotEmpty().WithMessage("CreatedBy обязательно.");
+            .GreaterThan(0).WithMessage("CreatedBy должен быть больше нуля.");
     }
 }
