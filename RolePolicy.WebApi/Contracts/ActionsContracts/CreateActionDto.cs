@@ -5,4 +5,4 @@ public record CreateActionDto(
     string? DescriptionRu,
     string? DescriptionKk,
     string? DescriptionEn,
-    int? CreatedBy);
+    int CreatedBy);

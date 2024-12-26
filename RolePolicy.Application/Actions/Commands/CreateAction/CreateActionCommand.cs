@@ -4,8 +4,8 @@ using MediatR;
 namespace RolePolicy.Application.Actions.Commands.CreateAction;
 
 public record CreateActionCommand(
-    string Name = "",
-    string? DescriptionRu = null,
-    string? DescriptionKk = null,
-    string? DescriptionEn = null,
-    int? CreatedBy = null) : IRequest<Result>;
+    string Name,
+    string? DescriptionRu,
+    string? DescriptionKk,
+    string? DescriptionEn,
+    int? CreatedBy) : IRequest<Result>;

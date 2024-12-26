@@ -11,9 +11,9 @@ public class GetActionListQueryHandler(IActionRepository actionRepository) : IRe
     public async Task<Result<List<Action>>> Handle(GetActionListQuery request, CancellationToken cancellationToken)
     {
         var records = await actionRepository.GetAllAsync();
-        if (records == null)
+        if (records.IsFailed)
         {
-            return Result.Failure<List<Action>>(new Error(Errors.BadRequest, "Ошибка при получении сущностей из таблицы Actions."));
+            return Result.Failure<List<Action>>(records.Error);
         }
         return records;
     }

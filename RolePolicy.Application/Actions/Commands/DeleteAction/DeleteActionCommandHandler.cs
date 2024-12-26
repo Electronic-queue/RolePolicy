@@ -12,7 +12,7 @@ public class DeleteActionCommandHandler(IActionRepository actionRepository) : IR
         var result =  await actionRepository.DeleteAsync(request.Id);
         if (result.IsFailed)
         {
-            return Result.Failure(new Error(Errors.BadRequest, $"Ошибка при удалении сущности с id {request.Id} в таблице Actions."));
+            return Result.Failure(result.Error);
         }
         return Result.Success();
     }

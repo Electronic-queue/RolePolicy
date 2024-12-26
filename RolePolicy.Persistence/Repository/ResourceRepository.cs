@@ -1,0 +1,96 @@
+﻿using KDS.Primitives.FluentResult;
+using Microsoft.EntityFrameworkCore;
+using RolePolicy.Domain.Commom.Exceptions;
+using RolePolicy.Domain.Entities;
+using RolePolicy.Domain.Interfaces;
+
+
+namespace RolePolicy.Persistence.Repository;
+
+public class ResourceRepository(RolePolicyDbContext dbContext) : IResourceRepository
+{
+    public async Task<Result> AddAsync(Resource resource)
+    {
+        try
+        {
+            await dbContext.AddAsync(resource);
+            await dbContext.SaveChangesAsync();
+            return Result.Success();
+        }
+        catch (Exception ex)
+        {
+            return Result.Failure(new Error(Errors.InternalServerError, ex.Message));
+        }
+    }
+
+    public async Task<Result> DeleteAsync(int id)
+    {
+        try
+        {
+            var entity = await dbContext.Resources.FindAsync(id);
+            if (entity != null)
+            {
+                dbContext.Remove(entity);
+                await dbContext.SaveChangesAsync();
+                return Result.Success();
+            }
+            return Result.Failure(new Error(Errors.NotFound, $"Ресурс с id {id} не найден."));
+        }
+        catch(Exception ex)
+        {
+            return Result.Failure(new Error(Errors.InternalServerError, ex.Message));
+        }
+    }
+
+    public async Task<Result<List<Resource>>> GetAllAsync()
+    {
+        try
+        {
+            var entities = await dbContext.Resources.ToListAsync();
+            return Result.Success(entities);
+        }
+        catch(Exception ex)
+        {
+            return Result.Failure<List<Resource>>(new Error(Errors.InternalServerError, ex.Message));
+        }
+    }
+
+    public async Task<Result<Resource>> GetById(int id)
+    {
+        try
+        {
+            var entity = await dbContext.Resources.FindAsync(id);
+            if (entity != null)
+            {
+                return Result.Success(entity);
+            }
+            return Result.Failure<Resource>(new Error(Errors.NotFound, $"Ресурс с id {id} не найден."));
+        }
+        catch(Exception ex)
+        {
+            return Result.Failure<Resource>(new Error(Errors.InternalServerError, ex.Message));
+        }
+    }
+
+    public async Task<Result> UpdateAsync(int id, string? name = null, string? descriptionRu = null, string? descriptionKk = null, string? descriptionEn = null)
+    {
+        try
+        {
+            var entity = await dbContext.Resources.FindAsync(id);
+            if (entity != null)
+            {
+                entity.Name = name ?? entity.Name;
+                entity.DescriptionRu = descriptionRu ?? entity.DescriptionRu;
+                entity.DescriptionKk = descriptionKk ?? entity.DescriptionKk;
+                entity.DescriptionEn = descriptionEn ?? entity.DescriptionEn;
+                await dbContext.SaveChangesAsync();
+                return Result.Success(entity);
+            }
+            return Result.Failure(new Error(Errors.NotFound, $"Ресурс с id {id} не найден."));
+        }
+        catch( Exception ex )
+        {
+            return Result.Failure(new Error(Errors.InternalServerError, ex.Message));
+        }
+    }
+}

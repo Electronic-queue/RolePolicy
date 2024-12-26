@@ -7,6 +7,7 @@ using System.Net;
 namespace RolePolicy.WebApi.Controllers;
 
 [ApiController]
+[Route("error")]
 public abstract class BaseController : ControllerBase
 {
     protected IMediator Mediator => HttpContext.RequestServices.GetService<IMediator>()!;

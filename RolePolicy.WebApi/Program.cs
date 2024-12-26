@@ -1,12 +1,15 @@
-using RolePolicy.Application;
-using RolePolicy.Persistence;
-using Microsoft.Extensions.Options;
-using RolePolicy.Application.Common.Mappings;
-using RolePolicy.WebApi.Common.ActionProfile;
-using System.Reflection;
-using Swashbuckle.AspNetCore.SwaggerGen;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.Extensions.Options;
+using RolePolicy.Application;
+using RolePolicy.Application.Common.Mappings;
+using RolePolicy.Persistence;
 using RolePolicy.WebApi;
+using RolePolicy.WebApi.Common.ActionProfile;
+using RolePolicy.WebApi.Common.ResourceProfile;
+using RolePolicy.WebApi.Common.UserProfile;
+using RolePolicy.WebApi.Middlewares;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +19,8 @@ builder.Services.AddAutoMapper(config =>
 {
     config.AddProfile(new AssemblyMappingProfile(AppDomain.CurrentDomain.GetAssemblies()));
     config.AddProfile(typeof(ActionProfile));
+    config.AddProfile(typeof(ResourceProfile));
+    config.AddProfile(typeof(UserProfile));
 });
 
 builder.Services.AddApplication();
@@ -69,7 +74,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
 }
-//app.UseMiddleware<CustomExceptionHandlerMiddleware>();
+//app.UseMiddleware<ExceptionHandlerMiddleware>();
 
 //app.UseMiddleware<CorrelationIdMiddleware>();
 app.UseSwagger();
@@ -87,7 +92,9 @@ app.UseSwaggerUI(config =>
 
     }
 });
-//app.UseCustomExceptionHandler();
+
+//app.UseMiddleware<ExceptionHandlerMiddleware>();
+app.UseExceptionHandler("/error");
 app.UseHttpsRedirection();
 app.UseCors("AllowAll");
 app.UseRouting();

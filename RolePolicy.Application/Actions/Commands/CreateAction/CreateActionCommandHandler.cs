@@ -20,7 +20,7 @@ public class CreateActionCommandHandler(IActionRepository actionRepository) : IR
         var result =  await actionRepository.AddAsync(action);
         if (result.IsFailed)
         {
-            return Result.Failure(new Error(Errors.BadRequest, "Ошибка при добавлении новой сущности в таблицу Actions."));
+            return Result.Failure(result.Error);
         }
         return Result.Success();
     }

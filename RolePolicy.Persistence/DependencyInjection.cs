@@ -16,6 +16,11 @@ public static class DependencyInjection
             options.UseSqlServer(connectionString);
         });
         services.AddScoped<IActionRepository, ActionRepository>();
+        services.AddScoped<IResourceRepository, ResourceRepository>();
+        services.AddScoped<IRoleAccessRepository, RoleAccessRepository>();
+        services.AddScoped<IRoleRepository, RoleRepository>();
+        services.AddScoped<IRoleResourceActionRepository, RoleResourceActionRepository>();
+        services.AddScoped<IUserRepository, UserRepository>();
 
         return services;
     }

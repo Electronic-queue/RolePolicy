@@ -34,7 +34,7 @@ public class ActionRepository(RolePolicyDbContext dbContext) : IActionRepository
                 await dbContext.SaveChangesAsync();
                 return Result.Success();
             }
-            return Result.Failure(new Error(Errors.BadRequest, $"Действие с id {id} не найдено."));
+            return Result.Failure(new Error(Errors.NotFound, $"Действие с id {id} не найдено."));
         }
         catch(Exception ex)
         {
@@ -47,11 +47,7 @@ public class ActionRepository(RolePolicyDbContext dbContext) : IActionRepository
         try
         {
             var entities = await dbContext.Actions.ToListAsync();
-            if (entities != null)
-            {
-                return Result.Success(entities);
-            }
-            return Result.Failure<List<Action>>(new Error(Errors.BadRequest, "Список действий пуст."));
+            return Result.Success(entities);
         }
         catch(Exception ex)
         {
@@ -68,7 +64,7 @@ public class ActionRepository(RolePolicyDbContext dbContext) : IActionRepository
             {
                 return Result.Success(entity);
             }
-            return Result.Failure<Action>(new Error(Errors.BadRequest, $"Действие с id {id} не найдено."));
+            return Result.Failure<Action>(new Error(Errors.NotFound, $"Действие с id {id} не найдено."));
         }
         catch(Exception ex)
         {
@@ -90,7 +86,7 @@ public class ActionRepository(RolePolicyDbContext dbContext) : IActionRepository
                 await dbContext.SaveChangesAsync();
                 return Result.Success(entity);
             }
-            return Result.Failure(new Error(Errors.BadRequest, $"Действие с id {id} не найдено."));
+            return Result.Failure(new Error(Errors.NotFound, $"Действие с id {id} не найдено."));
         }
         catch( Exception ex )
         {

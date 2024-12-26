@@ -11,9 +11,9 @@ public class GetActionByIdQueryHandler(IActionRepository actionRepository) : IRe
     public async Task<Result<Action>> Handle(GetActionByIdQuery request, CancellationToken cancellationToken)
     {
         var record = await actionRepository.GetById(request.Id);
-        if (record == null)
+        if (record.IsFailed)
         {
-            return Result.Failure<Action>(new Error(Errors.BadRequest, $"Ошибка при получении сущности с id {request.Id} из таблицы Actions."));
+            return Result.Failure<Action>(record.Error);
         }
         return record;
     }

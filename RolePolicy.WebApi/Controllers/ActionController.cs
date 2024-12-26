@@ -5,7 +5,6 @@ using RolePolicy.Application.Actions.Commands.UpdateAction;
 using RolePolicy.Application.Actions.Queries.GetActionById;
 using RolePolicy.Application.Actions.Queries.GetActionList;
 using RolePolicy.WebApi.Contracts.ActionsContracts;
-using Action = RolePolicy.Domain.Entities.Action;
 
 namespace RolePolicy.WebApi.Controllers;
 
@@ -19,10 +18,16 @@ public class ActionController : BaseController
     /// </summary>
     /// <returns>Возвращает список всех действий.</returns>
     [HttpGet]
-    public async Task<ActionResult<Action>> GetAll()
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<ActionResult<List<ActionListVm>>> GetAll()
     {
         var query = new GetActionListQuery();
         var result = await Mediator.Send(query);
+        if (result.IsFailed)
+        {
+            return ProblemResponse(result.Error);
+        }
         return Ok(result);
     }
 
@@ -32,10 +37,18 @@ public class ActionController : BaseController
     /// <param name="id"></param>
     /// <returns>Возвращает действие по id.</returns>
     [HttpGet("{id}")]
-    public async Task<ActionResult<Action>> GetById(int id)
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<ActionResult<ActionByIdVm>> GetById(int id)
     {
         var query = new GetActionByIdQuery(id);
         var result = await Mediator.Send(query);
+        if (result.IsFailed)
+        {
+            return ProblemResponse(result.Error);
+        }
         return Ok(result);
     }
 
@@ -45,10 +58,17 @@ public class ActionController : BaseController
     /// <param name="createActionDto"></param>
     /// <returns>Возвращает результат команды добавления нового действия.</returns>
     [HttpPost]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult> Create([FromBody] CreateActionDto createActionDto)
     {
         var command = Mapper.Map<CreateActionCommand>(createActionDto);
         var result = await Mediator.Send(command);
+        if (result.IsFailed)
+        {
+            return ProblemResponse(result.Error);
+        }
         return Ok(result);
     }
 
@@ -58,10 +78,18 @@ public class ActionController : BaseController
     /// <param name="updateActionDto"></param>
     /// <returns>Возвращает результат выполнения команды обновления действия.</returns>
     [HttpPut]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Update([FromBody] UpdateActionDto updateActionDto)
     {
         var command = Mapper.Map<UpdateActionCommand>(updateActionDto);
         var result = await Mediator.Send(command);
+        if (result.IsFailed)
+        {
+            return ProblemResponse(result.Error);
+        }
         return Ok(result);
     }
 
@@ -71,10 +99,17 @@ public class ActionController : BaseController
     /// <param name="id"></param>
     /// <returns>Возвращает результат удаления действия.</returns>
     [HttpDelete("{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Delete(int id)
     {
         var command = new DeleteActionCommand(id);
         var result = await Mediator.Send(command);
+        if (result.IsFailed)
+        {
+            return ProblemResponse(result.Error);
+        }
         return Ok(result);
     }
 }

@@ -38,5 +38,73 @@
             <param name="id"></param>
             <returns>Возвращает результат удаления действия.</returns>
         </member>
+        <member name="M:RolePolicy.WebApi.Controllers.ResourceController.GetAll">
+            <summary>
+            Получение списка всех ресурсов.
+            </summary>
+            <returns>Возвращает список всех ресурсов.</returns>
+        </member>
+        <member name="M:RolePolicy.WebApi.Controllers.ResourceController.GetById(System.Int32)">
+            <summary>
+            Получение ресурса по id.
+            </summary>
+            <param name="id"></param>
+            <returns>Возвращает ресурс по id.</returns>
+        </member>
+        <member name="M:RolePolicy.WebApi.Controllers.ResourceController.Create(RolePolicy.WebApi.Contracts.ResourcesContracts.CreateResourceDto)">
+            <summary>
+            Создание нового ресурса.
+            </summary>
+            <param name="createResourceDto"></param>
+            <returns>Возвращает результат команды добавления нового ресурса.</returns>
+        </member>
+        <member name="M:RolePolicy.WebApi.Controllers.ResourceController.Update(RolePolicy.WebApi.Contracts.ResourcesContracts.UpdateResourceDto)">
+            <summary>
+            Обновление информации о ресурсе.
+            </summary>
+            <param name="updateResourceDto"></param>
+            <returns>Возвращает результат выполнения команды обновления ресурса.</returns>
+        </member>
+        <member name="M:RolePolicy.WebApi.Controllers.ResourceController.Delete(System.Int32)">
+            <summary>
+            Удаление ресурса по id.
+            </summary>
+            <param name="id"></param>
+            <returns>Возвращает результат удаления ресурса.</returns>
+        </member>
+        <member name="M:RolePolicy.WebApi.Controllers.UserController.GetAll">
+            <summary>
+            Получение списка всех пользователей.
+            </summary>
+            <returns>Возвращает список всех пользователей.</returns>
+        </member>
+        <member name="M:RolePolicy.WebApi.Controllers.UserController.GetById(System.Int32)">
+            <summary>
+            Получение пользователя по id.
+            </summary>
+            <param name="id"></param>
+            <returns>Возвращает пользователя по id.</returns>
+        </member>
+        <member name="M:RolePolicy.WebApi.Controllers.UserController.Create(RolePolicy.WebApi.Contracts.UsersContracts.CreateUserDto)">
+            <summary>
+            Создание нового пользователя.
+            </summary>
+            <param name="createUserDto"></param>
+            <returns>Возвращает результат команды добавления нового пользователя.</returns>
+        </member>
+        <member name="M:RolePolicy.WebApi.Controllers.UserController.Update(RolePolicy.WebApi.Contracts.UsersContracts.UpdateUserDto)">
+            <summary>
+            Обновление информации о пользователе.
+            </summary>
+            <param name="updateUserDto"></param>
+            <returns>Возвращает результат выполнения команды обновления пользователя.</returns>
+        </member>
+        <member name="M:RolePolicy.WebApi.Controllers.UserController.Delete(System.Int32)">
+            <summary>
+            Удаление пользователя по id.
+            </summary>
+            <param name="id"></param>
+            <returns>Возвращает результат удаления пользователя.</returns>
+        </member>
     </members>
 </doc>
