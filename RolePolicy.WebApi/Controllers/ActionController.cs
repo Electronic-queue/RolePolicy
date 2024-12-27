@@ -13,6 +13,11 @@ namespace RolePolicy.WebApi.Controllers;
 [Route("api/[controller]")]
 public class ActionController : BaseController
 {
+    private readonly ILogger<ActionController> _logger;
+    public ActionController(ILogger<ActionController> logger)
+    {
+        _logger = logger;
+    }
     /// <summary>
     /// Получение списка всех действий.
     /// </summary>
@@ -22,12 +27,15 @@ public class ActionController : BaseController
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult<List<ActionListVm>>> GetAll()
     {
+        _logger.LogInformation("Request Initiated");
         var query = new GetActionListQuery();
         var result = await Mediator.Send(query);
         if (result.IsFailed)
         {
+            _logger.LogError($"[{result.Error.Code}] : {result.Error.Message}");
             return ProblemResponse(result.Error);
         }
+        _logger.LogInformation("Response: {result}", result);
         return Ok(result);
     }
 

@@ -13,6 +13,11 @@ namespace RolePolicy.WebApi.Controllers;
 [Route("api/[controller]")]
 public class RoleResourceActionController : BaseController
 {
+    private readonly ILogger<RoleResourceActionController> _logger;
+    public RoleResourceActionController(Logger<RoleResourceActionController> logger)
+    {
+        _logger = logger;
+    }
     /// <summary>
     /// Получение списка всех связей роли и действий над ресурсами.
     /// </summary>

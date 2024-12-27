@@ -13,6 +13,11 @@ namespace RolePolicy.WebApi.Controllers;
 [Route("api/[controller]")]
 public class RoleAccessController : BaseController
 {
+    private readonly ILogger<RoleAccessController> _logger;
+    public RoleAccessController(ILogger<RoleAccessController> logger)
+    {
+        _logger = logger;
+    }
     /// <summary>
     /// Получение списка всех предоставлений ролей.
     /// </summary>

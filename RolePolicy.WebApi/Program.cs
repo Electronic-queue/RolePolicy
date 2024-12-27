@@ -10,6 +10,7 @@ using RolePolicy.WebApi.Common.RoleAccessProfile;
 using RolePolicy.WebApi.Common.RoleProfile;
 using RolePolicy.WebApi.Common.RoleResourceActionProfile;
 using RolePolicy.WebApi.Common.UserProfile;
+using Serilog;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
 
@@ -45,8 +46,21 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddControllers();
+builder.Host.UseSerilog((context, config) => config.ReadFrom.Configuration(context.Configuration));
 
+builder.Services.AddControllers();
+//
+//builder.Services.AddHttpContextAccessor();
+//builder.Host.UseSerilog((context, config) =>
+//{
+//    config.MinimumLevel.Information()
+//    .MinimumLevel.Override("Microsoft.AspNetCore", Serilog.Events.LogEventLevel.Warning)
+//    .Enrich.WithCorrelationId()
+//    .WriteTo.Debug(outputTemplate: "[{Timestamp:yyyy-MM-ddd HH:mm:ss.fff} {CorrelstionId} {Level:u3}] {Message.lj}{NewLine}{exception}")
+//    .WriteTo.Console(outputTemplate: "[{Timestamp:yyyy-MM-ddd HH:mm:ss.fff} {CorrelstionId} {Level:u3}] {Message.lj}{NewLine}{exception}")
+//    .WriteTo.Seq("http://localhost:5341");
+
+//});
 builder.Services.AddSwaggerGen(config =>
 {
     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -104,7 +118,12 @@ app.UseHttpsRedirection();
 app.UseCors("AllowAll");
 app.UseRouting();
 app.UseApiVersioning();
+//
+app.UseSerilogRequestLogging();
+//
 app.MapControllers();
 
-//Log.Information("Приложение запущено");
+
+
+Log.Information("Приложение запущено");
 app.Run();

@@ -13,6 +13,11 @@ namespace RolePolicy.WebApi.Controllers;
 [Route("api/[controller]")]
 public class UserController : BaseController
 {
+    private readonly ILogger<UserController> _logger;
+    public UserController(ILogger<UserController> logger)
+    {
+        _logger = logger;
+    }
     /// <summary>
     /// Получение списка всех пользователей.
     /// </summary>

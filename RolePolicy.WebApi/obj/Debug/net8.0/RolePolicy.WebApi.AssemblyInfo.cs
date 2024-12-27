@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RolePolicy.WebApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+de1532beee247d9b645113db8b1e839d201ba975")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e0a8445ed093b00fc9df5ad77104fba78e0b079b")]
 [assembly: System.Reflection.AssemblyProductAttribute("RolePolicy.WebApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RolePolicy.WebApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

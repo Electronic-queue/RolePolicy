@@ -13,6 +13,11 @@ namespace RolePolicy.WebApi.Controllers;
 [Route("api/[controller]")]
 public class ResourceController : BaseController
 {
+    private readonly ILogger<ResourceController> _logger;
+    public ResourceController(ILogger<ResourceController> logger)
+    {
+        _logger = logger;
+    }
     /// <summary>
     /// Получение списка всех ресурсов.
     /// </summary>
