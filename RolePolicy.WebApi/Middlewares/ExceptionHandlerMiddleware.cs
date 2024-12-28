@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Net;
 using System.Text.Json;
 
 namespace RolePolicy.WebApi.Middlewares;
@@ -19,7 +20,7 @@ public class ExceptionHandlerMiddleware
             
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = exception switch {
-                ArgumentException => StatusCodes.Status400BadRequest,
+                ValidationException => StatusCodes.Status400BadRequest,
                 _ => StatusCodes.Status500InternalServerError
             };
             var result = JsonSerializer.Serialize( new{

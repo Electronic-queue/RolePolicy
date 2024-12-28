@@ -10,11 +10,15 @@ using RolePolicy.WebApi.Common.RoleAccessProfile;
 using RolePolicy.WebApi.Common.RoleProfile;
 using RolePolicy.WebApi.Common.RoleResourceActionProfile;
 using RolePolicy.WebApi.Common.UserProfile;
+using RolePolicy.WebApi.Middlewares;
 using Serilog;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
+
+Log.Logger = new LoggerConfiguration()
+            .CreateLogger();
 
 builder.Services.AddPersistence(builder.Configuration);
 
@@ -93,9 +97,9 @@ if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
 }
-//app.UseMiddleware<ExceptionHandlerMiddleware>();
+app.UseMiddleware<ExceptionHandlerMiddleware>();
 
-//app.UseMiddleware<CorrelationIdMiddleware>();
+app.UseMiddleware<CorrelationIdMiddleware>();
 app.UseSwagger();
 app.UseSwaggerUI(config =>
 {
@@ -112,7 +116,6 @@ app.UseSwaggerUI(config =>
     }
 });
 
-//app.UseMiddleware<ExceptionHandlerMiddleware>();
 app.UseExceptionHandler("/error");
 app.UseHttpsRedirection();
 app.UseCors("AllowAll");

@@ -19,7 +19,7 @@ public class RoleResourceActionRepository(RolePolicyDbContext dbContext) : IRole
         }
         catch (Exception ex)
         {
-            return Result.Failure(new Error(Errors.InternalServerError, ex.Message));
+            return Result.Failure(new Error(Errors.InternalServerError, "Ошибка при добавлении связи роли и действия над ресурсом в базу данных."));
         }
     }
 
@@ -38,7 +38,7 @@ public class RoleResourceActionRepository(RolePolicyDbContext dbContext) : IRole
         }
         catch(Exception ex)
         {
-            return Result.Failure(new Error(Errors.InternalServerError, ex.Message));
+            return Result.Failure(new Error(Errors.InternalServerError, "Ошибка при удалении связи роли и действия над ресурсом из базы данных."));
         }
     }
 
@@ -51,7 +51,7 @@ public class RoleResourceActionRepository(RolePolicyDbContext dbContext) : IRole
         }
         catch(Exception ex)
         {
-            return Result.Failure<List<RoleResourceAction>>(new Error(Errors.InternalServerError, ex.Message));
+            return Result.Failure<List<RoleResourceAction>>(new Error(Errors.InternalServerError, "Ошибка при получении полного списка связей роли и действия над ресурсом из базы данных."));
         }
     }
 
@@ -68,7 +68,7 @@ public class RoleResourceActionRepository(RolePolicyDbContext dbContext) : IRole
         }
         catch(Exception ex)
         {
-            return Result.Failure<RoleResourceAction>(new Error(Errors.InternalServerError, ex.Message));
+            return Result.Failure<RoleResourceAction>(new Error(Errors.InternalServerError, "Ошибка при получении связи роли и действия над ресурсом из базы данных."));
         }
     }
 
@@ -93,7 +93,7 @@ public class RoleResourceActionRepository(RolePolicyDbContext dbContext) : IRole
         }
         catch( Exception ex )
         {
-            return Result.Failure(new Error(Errors.InternalServerError, ex.Message));
+            return Result.Failure(new Error(Errors.InternalServerError, "Ошибка при обновлении связи роли и действия над ресурсом в базе данных."));
         }
     }
 }

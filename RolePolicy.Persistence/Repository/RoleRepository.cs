@@ -19,7 +19,7 @@ public class RoleRepository(RolePolicyDbContext dbContext) : IRoleRepository
         }
         catch (Exception ex)
         {
-            return Result.Failure(new Error(Errors.InternalServerError, ex.Message));
+            return Result.Failure(new Error(Errors.InternalServerError, "Ошибка при добавлении роли в базу данных."));
         }
     }
 
@@ -38,7 +38,7 @@ public class RoleRepository(RolePolicyDbContext dbContext) : IRoleRepository
         }
         catch(Exception ex)
         {
-            return Result.Failure(new Error(Errors.InternalServerError, ex.Message));
+            return Result.Failure(new Error(Errors.InternalServerError, "Ошибка при удалении роли из базы данных."));
         }
     }
 
@@ -51,7 +51,7 @@ public class RoleRepository(RolePolicyDbContext dbContext) : IRoleRepository
         }
         catch(Exception ex)
         {
-            return Result.Failure<List<Role>>(new Error(Errors.InternalServerError, ex.Message));
+            return Result.Failure<List<Role>>(new Error(Errors.InternalServerError, "Ошибка при получении полного списка ролей из базы данных."));
         }
     }
 
@@ -68,7 +68,7 @@ public class RoleRepository(RolePolicyDbContext dbContext) : IRoleRepository
         }
         catch(Exception ex)
         {
-            return Result.Failure<Role>(new Error(Errors.InternalServerError, ex.Message));
+            return Result.Failure<Role>(new Error(Errors.InternalServerError, "Ошибка при получении роли из базы данных."));
         }
     }
 
@@ -93,7 +93,7 @@ public class RoleRepository(RolePolicyDbContext dbContext) : IRoleRepository
         }
         catch( Exception ex )
         {
-            return Result.Failure(new Error(Errors.InternalServerError, ex.Message));
+            return Result.Failure(new Error(Errors.InternalServerError, "Ошибка при обновлении роли в базе данных."));
         }
     }
 }

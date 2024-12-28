@@ -19,7 +19,7 @@ public class UserRepository(RolePolicyDbContext dbContext) : IUserRepository
         }
         catch (Exception ex)
         {
-            return Result.Failure(new Error(Errors.InternalServerError, ex.Message));
+            return Result.Failure(new Error(Errors.InternalServerError, "Ошибка при добавлении пользователя в базу данных."));
         }
     }
 
@@ -38,7 +38,7 @@ public class UserRepository(RolePolicyDbContext dbContext) : IUserRepository
         }
         catch(Exception ex)
         {
-            return Result.Failure(new Error(Errors.InternalServerError, ex.Message));
+            return Result.Failure(new Error(Errors.InternalServerError, "Ошибка при удалении пользователя из базы данных."));
         }
     }
 
@@ -51,7 +51,7 @@ public class UserRepository(RolePolicyDbContext dbContext) : IUserRepository
         }
         catch(Exception ex)
         {
-            return Result.Failure<List<User>>(new Error(Errors.InternalServerError, ex.Message));
+            return Result.Failure<List<User>>(new Error(Errors.InternalServerError, "Ошибка при получении полного списка пользователей из базы данных."));
         }
     }
 
@@ -68,7 +68,7 @@ public class UserRepository(RolePolicyDbContext dbContext) : IUserRepository
         }
         catch(Exception ex)
         {
-            return Result.Failure<User>(new Error(Errors.InternalServerError, ex.Message));
+            return Result.Failure<User>(new Error(Errors.InternalServerError, "Ошибка при получении пользователя из базы данных."));
         }
     }
 
@@ -93,7 +93,7 @@ public class UserRepository(RolePolicyDbContext dbContext) : IUserRepository
         }
         catch( Exception ex )
         {
-            return Result.Failure(new Error(Errors.InternalServerError, ex.Message));
+            return Result.Failure(new Error(Errors.InternalServerError, "Ошибка при обновлении пользователя в базе данных."));
         }
     }
 }

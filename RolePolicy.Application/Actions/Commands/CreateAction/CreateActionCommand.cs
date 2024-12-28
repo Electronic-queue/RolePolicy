@@ -8,4 +8,4 @@ public record CreateActionCommand(
     string? DescriptionRu,
     string? DescriptionKk,
     string? DescriptionEn,
-    int? CreatedBy) : IRequest<Result>;
+    int CreatedBy) : IRequest<Result>;
