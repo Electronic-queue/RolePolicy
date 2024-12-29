@@ -1,7 +1,6 @@
 ﻿using KDS.Primitives.FluentResult;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using RolePolicy.Domain.Commom.Exceptions;
 using RolePolicy.Domain.Interfaces;
 
 namespace RolePolicy.Application.Actions.Commands.DeleteAction;
@@ -14,7 +13,7 @@ public class DeleteActionCommandHandler(IActionRepository actionRepository, ILog
         var result =  await actionRepository.DeleteAsync(request.Id);
         if (result.IsFailed)
         {
-            logger.LogError("Ошибка [{ErrorCode}] при обработке запроса на удаление действия.", result.Error.Code);
+            logger.LogError("Ошибка [{ErrorCode}] при обработке запроса на удаление действия из базы данных.", result.Error.Code);
             return Result.Failure(result.Error);
         }
         logger.LogInformation("Запрос успешно обработан.");

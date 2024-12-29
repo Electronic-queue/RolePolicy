@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using KDS.Primitives.FluentResult;
+using Microsoft.AspNetCore.Mvc;
+using RolePolicy.Application.RoleAccesses.Queries.GetRoleAccessList;
 using RolePolicy.Application.Roles.Commands.CreateRole;
 using RolePolicy.Application.Roles.Commands.DeleteRole;
 using RolePolicy.Application.Roles.Commands.UpdateRole;
@@ -23,17 +25,23 @@ public class RoleController : BaseController
     /// </summary>
     /// <returns>Возвращает список всех ролей.</returns>
     [HttpGet]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<List<RoleListVm>>> GetAll()
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(RoleAccessListVm))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Result))]
+    public async Task<IActionResult> GetAll()
     {
-        var query = new GetRoleListQuery();
-        var result = await Mediator.Send(query);
-        if (result.IsFailed)
+        var scope = new Dictionary<string, object>();
+        using (_logger.BeginScope(scope))
         {
-            return ProblemResponse(result.Error);
+            _logger.LogInformation("Отправка запроса на чтение полного списка ролей.");
+            var result = await Mediator.Send(new GetRoleListQuery());
+            if (result.IsFailed)
+            {
+                _logger.LogError("Запрос вернул ошибку [{ErrorCode}] [{ErrorMessage}].", result.Error.Code, result.Error.Message);
+                return ProblemResponse(result.Error);
+            }
+            _logger.LogInformation("Запрос прошел успешно.");
+            return Ok(result);
         }
-        return Ok(result);
     }
 
     /// <summary>
@@ -42,19 +50,25 @@ public class RoleController : BaseController
     /// <param name="id"></param>
     /// <returns>Возвращает роль по id.</returns>
     [HttpGet("{id}")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<RoleByIdVm>> GetById(int id)
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(RoleByIdVm))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(Result))]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(Result))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Result))]
+    public async Task<IActionResult> GetById(int id)
     {
-        var query = new GetRoleByIdQuery(id);
-        var result = await Mediator.Send(query);
-        if (result.IsFailed)
+        var scope = new Dictionary<string, object> { { "TargetRoleId", id } };
+        using (_logger.BeginScope(scope))
         {
-            return ProblemResponse(result.Error);
+            _logger.LogInformation("Отправка запроса на чтение роли.");
+            var result = await Mediator.Send(new GetRoleByIdQuery(id));
+            if (result.IsFailed)
+            {
+                _logger.LogError("Запрос вернул ошибку [{ErrorCode}] [{ErrorMessage}].", result.Error.Code, result.Error.Message);
+                return ProblemResponse(result.Error);
+            }
+            _logger.LogInformation("Запрос прошел успешно.");
+            return Ok(result);
         }
-        return Ok(result);
     }
 
     /// <summary>
@@ -63,18 +77,28 @@ public class RoleController : BaseController
     /// <param name="createRoleDto"></param>
     /// <returns>Возвращает результат команды добавления новой роли.</returns>
     [HttpPost]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult> Create([FromBody] CreateRoleDto createRoleDto)
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Result))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(Result))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Result))]
+    public async Task<IActionResult> Create([FromBody] CreateRoleDto createRoleDto)
     {
-        var command = Mapper.Map<CreateRoleCommand>(createRoleDto);
-        var result = await Mediator.Send(command);
-        if (result.IsFailed)
+        var scope = new Dictionary<string, object>() { 
+            { "TargetNameRu", createRoleDto.NameRu },
+            { "TargetNameKk", createRoleDto.NameKk },
+            { "TargetNameEn", createRoleDto.NameEn }
+        };
+        using (_logger.BeginScope(scope))
         {
-            return ProblemResponse(result.Error);
+            _logger.LogInformation("Отправка запроса на создание роли.");
+            var result = await Mediator.Send(Mapper.Map<CreateRoleCommand>(createRoleDto));
+            if (result.IsFailed)
+            {
+                _logger.LogError("Запрос вернул ошибку [{ErrorCode}] [{ErrorMessage}].", result.Error.Code, result.Error.Message);
+                return ProblemResponse(result.Error);
+            }
+            _logger.LogInformation("Запрос прошел успешно.");
+            return Ok(result);
         }
-        return Ok(result);
     }
 
     /// <summary>
@@ -83,19 +107,25 @@ public class RoleController : BaseController
     /// <param name="updateRoleDto"></param>
     /// <returns>Возвращает результат выполнения команды обновления роли.</returns>
     [HttpPut]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Result))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(Result))]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(Result))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Result))]
     public async Task<IActionResult> Update([FromBody] UpdateRoleDto updateRoleDto)
     {
-        var command = Mapper.Map<UpdateRoleCommand>(updateRoleDto);
-        var result = await Mediator.Send(command);
-        if (result.IsFailed)
+        var scope = new Dictionary<string, object>() { { "TargetRoleId", updateRoleDto.Id } };
+        using (_logger.BeginScope(scope))
         {
-            return ProblemResponse(result.Error);
+            _logger.LogInformation("Отправка запроса на обновление роли.");
+            var result = await Mediator.Send(Mapper.Map<UpdateRoleCommand>(updateRoleDto));
+            if (result.IsFailed)
+            {
+                _logger.LogError("Запрос вернул ошибку [{ErrorCode}] [{ErrorMessage}].", result.Error.Code, result.Error.Message);
+                return ProblemResponse(result.Error);
+            }
+            _logger.LogInformation("Запрос прошел успешно.");
+            return Ok(result);
         }
-        return Ok(result);
     }
 
     /// <summary>
@@ -104,17 +134,23 @@ public class RoleController : BaseController
     /// <param name="id"></param>
     /// <returns>Возвращает результат удаления роли.</returns>
     [HttpDelete("{id}")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Result))]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(Result))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Result))]
     public async Task<IActionResult> Delete(int id)
     {
-        var command = new DeleteRoleCommand(id);
-        var result = await Mediator.Send(command);
-        if (result.IsFailed)
+        var scope = new Dictionary<string, object>() { { "TargetRoleId", id } };
+        using (_logger.BeginScope(scope))
         {
-            return ProblemResponse(result.Error);
+            _logger.LogInformation("Отправка запроса на удаление роли.");
+            var result = await Mediator.Send(new DeleteRoleCommand(id));
+            if (result.IsFailed)
+            {
+                _logger.LogError("Запрос вернул ошибку [{ErrorCode}] [{ErrorMessage}].", result.Error.Code, result.Error.Message);
+                return ProblemResponse(result.Error);
+            }
+            _logger.LogInformation("Запрос прошел успешно.");
+            return Ok(result);
         }
-        return Ok(result);
     }
 }

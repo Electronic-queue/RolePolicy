@@ -13,7 +13,7 @@ public class UpdateActionCommandHandler(IActionRepository actionRepository, ILog
         var result =  await actionRepository.UpdateAsync(request.Id, request.Name, request.DescriptionRu, request.DescriptionKk, request.DescriptionEn);
         if (result.IsFailed)
         {
-            logger.LogError("Ошибка [{ErrorCode}] при обработке запроса на обновление действия.", result.Error.Code);
+            logger.LogError("Ошибка [{ErrorCode}] при обработке запроса на обновление действия в базе данных.", result.Error.Code);
             return Result.Failure(result.Error);
         }
         logger.LogInformation("Запрос успешно обработан.");

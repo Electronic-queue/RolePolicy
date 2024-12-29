@@ -4,4 +4,4 @@ using RolePolicy.Domain.Entities;
 
 namespace RolePolicy.Application.Resources.Queries.GetResourceList;
 
-public record GetRoleAccessListQuery() : IRequest<Result<List<Resource>>>;
+public record GetResourceListQuery() : IRequest<Result<List<Resource>>>;

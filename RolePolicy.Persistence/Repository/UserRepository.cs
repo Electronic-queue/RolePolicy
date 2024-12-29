@@ -1,25 +1,30 @@
 ﻿using KDS.Primitives.FluentResult;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using RolePolicy.Domain.Commom.Exceptions;
 using RolePolicy.Domain.Entities;
 using RolePolicy.Domain.Interfaces;
+using System.Data;
 
 
 namespace RolePolicy.Persistence.Repository;
 
-public class UserRepository(RolePolicyDbContext dbContext) : IUserRepository
+public class UserRepository(RolePolicyDbContext dbContext, ILogger<UserRepository> logger) : IUserRepository
 {
     public async Task<Result> AddAsync(User user)
     {
         try
         {
+            logger.LogInformation("Добавление нового пользователя в базу данных.");
             await dbContext.AddAsync(user);
             await dbContext.SaveChangesAsync();
+            logger.LogInformation("Пользователь {TargetFirstName} {TargetLastName} добавлен в базу данных.", user.FirstName, user.LastName);
             return Result.Success();
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            return Result.Failure(new Error(Errors.InternalServerError, "Ошибка при добавлении пользователя в базу данных."));
+            logger.LogError("Ошибка при добавлении пользователя {TargetFirstName} {TargetLastName} в базу данных.", user.FirstName, user.LastName);
+            return Result.Failure(new Error(Errors.InternalServerError, $"Ошибка при добавлении пользователя {user.FirstName} {user.LastName} в базу данных."));
         }
     }
 
@@ -27,18 +32,22 @@ public class UserRepository(RolePolicyDbContext dbContext) : IUserRepository
     {
         try
         {
+            logger.LogInformation("Удаление пользователя из базы данных.");
             var entity = await dbContext.Users.FindAsync(id);
             if (entity != null)
             {
                 dbContext.Remove(entity);
                 await dbContext.SaveChangesAsync();
+                logger.LogInformation("Пользователь с id {TargetUserId} удален из базы данных.", id);
                 return Result.Success();
             }
-            return Result.Failure(new Error(Errors.NotFound, $"Пользователь с id {id} не найден."));
+            logger.LogError("Пользователь с id {TargetUserId} не найден в базе данных.", id);
+            return Result.Failure(new Error(Errors.NotFound, $"Пользователь с id {id} не найден в базе данных."));
         }
-        catch(Exception ex)
+        catch(Exception)
         {
-            return Result.Failure(new Error(Errors.InternalServerError, "Ошибка при удалении пользователя из базы данных."));
+            logger.LogError("Ошибка при удалении пользователя с id {TargetUserId} из базы данных.", id);
+            return Result.Failure(new Error(Errors.InternalServerError, $"Ошибка при удалении пользователя с id {id} из базы данных."));
         }
     }
 
@@ -46,11 +55,14 @@ public class UserRepository(RolePolicyDbContext dbContext) : IUserRepository
     {
         try
         {
+            logger.LogInformation("Получение полного списка пользователей из базы данных.");
             var entities = await dbContext.Users.ToListAsync();
+            logger.LogInformation("Полный список пользователей получен из базы данных.");
             return Result.Success(entities);
         }
-        catch(Exception ex)
+        catch(Exception)
         {
+            logger.LogError("Ошибка при получении полного списка пользователей из базы данных.");
             return Result.Failure<List<User>>(new Error(Errors.InternalServerError, "Ошибка при получении полного списка пользователей из базы данных."));
         }
     }
@@ -59,16 +71,20 @@ public class UserRepository(RolePolicyDbContext dbContext) : IUserRepository
     {
         try
         {
+            logger.LogInformation("Получение пользователя из базы данных.");
             var entity = await dbContext.Users.FindAsync(id);
             if (entity != null)
             {
+                logger.LogInformation("Пользователь с id {TargetUserId} получен из базы данных.", id);
                 return Result.Success(entity);
             }
-            return Result.Failure<User>(new Error(Errors.NotFound, $"Пользователь с id {id} не найден."));
+            logger.LogError("Пользователь с id {TargetUserId} не найден в базе данных.", id);
+            return Result.Failure<User>(new Error(Errors.NotFound, $"Пользователь с id {id} не найден в базе данных."));
         }
-        catch(Exception ex)
+        catch(Exception)
         {
-            return Result.Failure<User>(new Error(Errors.InternalServerError, "Ошибка при получении пользователя из базы данных."));
+            logger.LogError("Ошибка при получении пользователя с id {TargetUserId} из базы данных.", id);
+            return Result.Failure<User>(new Error(Errors.InternalServerError, $"Ошибка при получении пользователя с id {id} из базы данных."));
         }
     }
 
@@ -77,6 +93,7 @@ public class UserRepository(RolePolicyDbContext dbContext) : IUserRepository
     {
         try
         {
+            logger.LogInformation("Обновление пользователя в базе данных.");
             var entity = await dbContext.Users.FindAsync(id);
             if (entity != null)
             {
@@ -87,13 +104,16 @@ public class UserRepository(RolePolicyDbContext dbContext) : IUserRepository
                 entity.PasswordHash = passwordHash ?? entity.PasswordHash;
                 entity.IsDeleted = isDeleted ?? entity.IsDeleted;
                 await dbContext.SaveChangesAsync();
+                logger.LogInformation("Пользователь с id {TargetUserId} обновлен в базе данных.", id);
                 return Result.Success(entity);
             }
-            return Result.Failure(new Error(Errors.NotFound, $"Пользователь с id {id} не найден."));
+            logger.LogError("Пользователь с id {TargetUserId} не найден в базе данных.", id);
+            return Result.Failure(new Error(Errors.NotFound, $"Пользователь с id {id} не найден в базе данных."));
         }
-        catch( Exception ex )
+        catch (Exception)
         {
-            return Result.Failure(new Error(Errors.InternalServerError, "Ошибка при обновлении пользователя в базе данных."));
+            logger.LogError("Ошибка при обновлении пользователя с id {TargetUserId} в базе данных.", id);
+            return Result.Failure(new Error(Errors.InternalServerError, $"Ошибка при обновлении пользователя с id {id} в базе данных."));
         }
     }
 }

@@ -22,7 +22,7 @@ public class CreateActionCommandHandler(IActionRepository actionRepository, ILog
         var result =  await actionRepository.AddAsync(action);
         if (result.IsFailed)
         {
-            logger.LogError("Ошибка [{ErrorCode}] при обработке запроса на создание нового действия.", result.Error.Code);
+            logger.LogError("Ошибка [{ErrorCode}] при обработке запроса на создание нового действия в базе данных.", result.Error.Code);
             return Result.Failure(result.Error);
         }
         logger.LogInformation("Запрос успешно обработан.");

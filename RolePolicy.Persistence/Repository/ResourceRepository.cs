@@ -14,16 +14,16 @@ public class ResourceRepository(RolePolicyDbContext dbContext, ILogger<ResourceR
     {
         try
         {
-            logger.LogInformation("Добавление нового ресурса {ResourceName} в базу данных.", resource.Name);
+            logger.LogInformation("Добавление нового ресурса в базу данных.");
             await dbContext.AddAsync(resource);
             await dbContext.SaveChangesAsync();
-            logger.LogInformation("Ресурс {ResourceName} добавлен в базу данных.", resource.Name);
+            logger.LogInformation("Ресурс {TargetName} добавлен в базу данных.", resource.Name);
             return Result.Success();
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            logger.LogError("Ошибка при добавлении ресурса {ResourceName} в базу данных.", resource.Name);
-            return Result.Failure(new Error(Errors.InternalServerError, "Ошибка при добавлении ресурса в базу данных."));
+            logger.LogError("Ошибка при добавлении ресурса {TargetName} в базу данных.", resource.Name);
+            return Result.Failure(new Error(Errors.InternalServerError, $"Ошибка при добавлении нового ресурса {resource.Name} в базу данных."));
         }
     }
 
@@ -31,21 +31,22 @@ public class ResourceRepository(RolePolicyDbContext dbContext, ILogger<ResourceR
     {
         try
         {
-            logger.LogInformation("Удаление ресурса с id {ResourceId} из базы данных.", id);
+            logger.LogInformation("Удаление ресурса из базы данных.");
             var entity = await dbContext.Resources.FindAsync(id);
             if (entity != null)
             {
                 dbContext.Remove(entity);
                 await dbContext.SaveChangesAsync();
-                logger.LogInformation("Ресурс с id {ResourceId} удален из базы данных.", id);
+                logger.LogInformation("Ресурс с id {TargetResourceId} удалено из базы данных.", id);
                 return Result.Success();
             }
+            logger.LogError("Ресурс с id {TargetResourceId} не найден в базе данных.", id);
             return Result.Failure(new Error(Errors.NotFound, $"Ресурс с id {id} не найден в базе данных."));
         }
-        catch(Exception ex)
+        catch(Exception)
         {
-            logger.LogError("Ошибка при удалении ресурса с id {ResourceId} из базы данных.", id);
-            return Result.Failure(new Error(Errors.InternalServerError, "Ошибка при удалении ресурса из базы данных."));
+            logger.LogError("Ошибка при удалении ресурса с id {TargetResourceId} из базы данных.", id);
+            return Result.Failure(new Error(Errors.InternalServerError, $"Ошибка при удалении ресурса с id {id} из базы данных."));
         }
     }
 
@@ -58,7 +59,7 @@ public class ResourceRepository(RolePolicyDbContext dbContext, ILogger<ResourceR
             logger.LogInformation("Полный список ресурсов получен из базы данных.");
             return Result.Success(entities);
         }
-        catch(Exception ex)
+        catch(Exception)
         {
             logger.LogError("Ошибка при получении полного списка ресурсов из базы данных.");
             return Result.Failure<List<Resource>>(new Error(Errors.InternalServerError, "Ошибка при получении полного списка ресурсов из базы данных."));
@@ -69,20 +70,20 @@ public class ResourceRepository(RolePolicyDbContext dbContext, ILogger<ResourceR
     {
         try
         {
-            logger.LogInformation("Получение ресурса с id {ResourceId} из базы данных.", id);
+            logger.LogInformation("Получение ресурса из базы данных.");
             var entity = await dbContext.Resources.FindAsync(id);
             if (entity != null)
             {
-                logger.LogInformation("Ресурс с id {ResourceId} получен из базы данных.", id);
+                logger.LogInformation("Ресурс с id {TargetResourceId} получен из базы данных.", id);
                 return Result.Success(entity);
             }
-            logger.LogError("Ресурс с id {ResourceId} не найден в базе данных.", id);
-            return Result.Failure<Resource>(new Error(Errors.NotFound, $"Ресурс с id {id} не найден."));
+            logger.LogError("Ресурс с id {TargetResourceId} не найден в базе данных.", id);
+            return Result.Failure<Resource>(new Error(Errors.NotFound, $"Ресурс с id {id} не найден в базе данных."));
         }
-        catch(Exception ex)
+        catch(Exception)
         {
-            logger.LogError("Ошибка при получении ресурса с id {ResourceId} из базы данных.", id);
-            return Result.Failure<Resource>(new Error(Errors.InternalServerError, "Ошибка при получении ресурса из базы данных."));
+            logger.LogError("Ошибка при получении ресурса с id {TargetResourceId} из базы данных.", id);
+            return Result.Failure<Resource>(new Error(Errors.InternalServerError, $"Ошибка при получении ресурса с id {id} из базы данных."));
         }
     }
 
@@ -90,7 +91,7 @@ public class ResourceRepository(RolePolicyDbContext dbContext, ILogger<ResourceR
     {
         try
         {
-            logger.LogInformation("Обновление ресурса с id {ResourceId} из базы данных.", id);
+            logger.LogInformation("Обновление ресурса в базе данных.");
             var entity = await dbContext.Resources.FindAsync(id);
             if (entity != null)
             {
@@ -99,16 +100,16 @@ public class ResourceRepository(RolePolicyDbContext dbContext, ILogger<ResourceR
                 entity.DescriptionKk = descriptionKk ?? entity.DescriptionKk;
                 entity.DescriptionEn = descriptionEn ?? entity.DescriptionEn;
                 await dbContext.SaveChangesAsync();
-                logger.LogInformation("Ресурс с id {ResourceId} обновлен в базе данных.", id);
+                logger.LogInformation("Ресурс с id {TargetResourceId} обновлен в базе данных.", id);
                 return Result.Success(entity);
             }
-            logger.LogError("Ресурс с id {ResourceId} не найден в базе данных.", id);
-            return Result.Failure(new Error(Errors.NotFound, $"Ресурс с id {id} не найден."));
+            logger.LogError("Ресурс с id {TargetResourceId} не найден в базе данных.", id);
+            return Result.Failure(new Error(Errors.NotFound, $"Ресурс с id {id} не найден в базе данных."));
         }
-        catch( Exception ex )
+        catch(Exception)
         {
-            logger.LogError("Ошибка при обновлении ресурса с id {ResourceId} в базе данных.", id);
-            return Result.Failure(new Error(Errors.InternalServerError, "Ошибка при обновлении ресурса в базе данных."));
+            logger.LogError("Ошибка при обновлении ресурса с id {TargetResourceId} в базе данных.", id);
+            return Result.Failure(new Error(Errors.InternalServerError, $"Ошибка при обновлении ресурса с id {id} в базе данных."));
         }
     }
 }

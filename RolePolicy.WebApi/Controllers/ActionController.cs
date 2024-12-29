@@ -1,13 +1,11 @@
 ﻿using KDS.Primitives.FluentResult;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using RolePolicy.Application.Actions.Commands.CreateAction;
 using RolePolicy.Application.Actions.Commands.DeleteAction;
 using RolePolicy.Application.Actions.Commands.UpdateAction;
 using RolePolicy.Application.Actions.Queries.GetActionById;
 using RolePolicy.Application.Actions.Queries.GetActionList;
 using RolePolicy.WebApi.Contracts.ActionsContracts;
-using System.Diagnostics;
 
 namespace RolePolicy.WebApi.Controllers;
 
@@ -26,7 +24,7 @@ public class ActionController : BaseController
     /// </summary>
     /// <returns>Возвращает список всех действий.</returns>
     [HttpGet]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<ActionListVm>))]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ActionListVm))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Result))]
     public async Task<IActionResult> GetAll()
     {
@@ -51,19 +49,17 @@ public class ActionController : BaseController
     /// <param name="id"></param>
     /// <returns>Возвращает действие по id.</returns>
     [HttpGet("{id}")]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ActionListVm))]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ActionByIdVm))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(Result))]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(Result))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Result))]
     public async Task<IActionResult> GetById(int id)
     {
-        var scope = new Dictionary<string, object> { { "ActionId", id } };
-
+        var scope = new Dictionary<string, object> { { "TargetActionId", id } };
         using (_logger.BeginScope(scope))
         {
-            _logger.LogInformation("Отправка запроса на чтение действия с id");
+            _logger.LogInformation("Отправка запроса на чтение действия.");
             var result = await Mediator.Send(new GetActionByIdQuery(id));
-
             if (result.IsFailed)
             {
                 _logger.LogError("Запрос вернул ошибку [{ErrorCode}] [{ErrorMessage}].", result.Error.Code, result.Error.Message);
@@ -85,8 +81,7 @@ public class ActionController : BaseController
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Result))]
     public async Task<IActionResult> Create([FromBody] CreateActionDto createActionDto)
     {
-        var scope = new Dictionary<string, object>() { { "ActionName", createActionDto.Name } };
-
+        var scope = new Dictionary<string, object>() { { "TargetName", createActionDto.Name } };
         using (_logger.BeginScope(scope))
         {
             _logger.LogInformation("Отправка запроса на создание действия.");
@@ -113,11 +108,10 @@ public class ActionController : BaseController
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Result))]
     public async Task<IActionResult> Update([FromBody] UpdateActionDto updateActionDto)
     {
-        var scope = new Dictionary<string, object>() { { "ActionId", updateActionDto.Id} };
-
+        var scope = new Dictionary<string, object>() { { "TargetActionId", updateActionDto.Id} };
         using (_logger.BeginScope(scope))
         {
-            _logger.LogInformation("Отправка запроса на обновление действия с id {Id}", updateActionDto.Id);
+            _logger.LogInformation("Отправка запроса на обновление действия.");
             var result = await Mediator.Send(Mapper.Map<UpdateActionCommand>(updateActionDto));
             if (result.IsFailed)
             {
@@ -140,11 +134,10 @@ public class ActionController : BaseController
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Result))]
     public async Task<IActionResult> Delete(int id)
     {
-        var scope = new Dictionary<string, object>() { { "ActionId", id} };
-
+        var scope = new Dictionary<string, object>() { { "TargetActionId", id} };
         using (_logger.BeginScope(scope))
         {
-            _logger.LogInformation("Отправка запроса на удаление действия с id {Id}", id);
+            _logger.LogInformation("Отправка запроса на удаление действия.");
             var result = await Mediator.Send(new DeleteActionCommand(id));
             if (result.IsFailed)
             {

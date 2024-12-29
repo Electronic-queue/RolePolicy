@@ -10,11 +10,11 @@ public class GetActionByIdQueryHandler(IActionRepository actionRepository, ILogg
 {
     public async Task<Result<Action>> Handle(GetActionByIdQuery request, CancellationToken cancellationToken)
     {
-        logger.LogInformation("Обработка запроса на получение действия изз базы данных.");
+        logger.LogInformation("Обработка запроса на получение действия из базы данных.");
         var record = await actionRepository.GetById(request.Id);
         if (record.IsFailed)
         {
-            logger.LogError("Ошибка [{ErrorCode}] при обработке запроса на получение действия.", record.Error.Code);
+            logger.LogError("Ошибка [{ErrorCode}] при обработке запроса на получение действия из базы данных.", record.Error.Code);
             return Result.Failure<Action>(record.Error);
         }
         logger.LogInformation("Запрос успешно обработан.");

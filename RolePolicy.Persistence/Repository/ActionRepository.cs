@@ -14,16 +14,16 @@ public class ActionRepository(RolePolicyDbContext dbContext, ILogger<ActionRepos
     {
         try
         {
-            logger.LogInformation("Добавление нового действия {ActionName} в базу данных.", action.Name);
+            logger.LogInformation("Добавление нового действия в базу данных.");
             await dbContext.AddAsync(action);
             await dbContext.SaveChangesAsync();
-            logger.LogInformation("Действие {ActionName} добавлено в базу данных.", action.Name);
+            logger.LogInformation("Действие {TargetName} добавлено в базу данных.", action.Name);
             return Result.Success();
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            logger.LogError("Ошибка при добавлении действия {ActionName} в базу данных.", action.Name);
-            return Result.Failure(new Error(Errors.InternalServerError, "Ошибка при добавлении нового действия в базу данных."));
+            logger.LogError("Ошибка при добавлении действия {TargetActionName} в базу данных.", action.Name);
+            return Result.Failure(new Error(Errors.InternalServerError, $"Ошибка при добавлении нового действия {action.Name} в базу данных."));
         }
     }
 
@@ -31,22 +31,22 @@ public class ActionRepository(RolePolicyDbContext dbContext, ILogger<ActionRepos
     {
         try
         {
-            logger.LogInformation("Удаление действия с id {ActionId} из базы данных.", id);
+            logger.LogInformation("Удаление действия из базы данных.");
             var entity = await dbContext.Actions.FindAsync(id);
             if (entity != null)
             {
                 dbContext.Remove(entity);
                 await dbContext.SaveChangesAsync();
-                logger.LogInformation("Действие с id {ActionId} удалено из базы данных.", id);
+                logger.LogInformation("Действие с id {TargetActionId} удалено из базы данных.", id);
                 return Result.Success();
             }
-            logger.LogError("Действие с id {ActionId} не найдено в базе данных.", id);
+            logger.LogError("Действие с id {TargetActionId} не найдено в базе данных.", id);
             return Result.Failure(new Error(Errors.NotFound, $"Действие с id {id} не найдено в базе данных."));
         }
-        catch(Exception ex)
+        catch(Exception)
         {
-            logger.LogError("Ошибка при удалении действия с id {ActionId} из базы данных.", id);
-            return Result.Failure(new Error(Errors.InternalServerError, "Ошибка при удалении действия из базы данных."));
+            logger.LogError("Ошибка при удалении действия с id {TargetActionId} из базы данных.", id);
+            return Result.Failure(new Error(Errors.InternalServerError, $"Ошибка при удалении действия с id {id} из базы данных."));
         }
     }
 
@@ -59,7 +59,7 @@ public class ActionRepository(RolePolicyDbContext dbContext, ILogger<ActionRepos
             logger.LogInformation("Полный список действий получен из базы данных.");
             return Result.Success(entities);
         }
-        catch(Exception ex)
+        catch(Exception)
         {
             logger.LogError("Ошибка при получении полного списка действий из базы данных.");
             return Result.Failure<List<Action>>(new Error(Errors.InternalServerError, "Ошибка при получении полного списка действий из базы данных."));
@@ -70,20 +70,20 @@ public class ActionRepository(RolePolicyDbContext dbContext, ILogger<ActionRepos
     {
         try
         {
-            logger.LogInformation("Получение действия с id {ActionId} из базы данных.", id);
+            logger.LogInformation("Получение действия из базы данных.");
             var entity = await dbContext.Actions.FindAsync(id);
             if (entity != null)
             {
-                logger.LogInformation("Действие с id {ActionId} получено из базы данных.", id);
+                logger.LogInformation("Действие с id {TargetActionId} получено из базы данных.", id);
                 return Result.Success(entity);
             }
-            logger.LogError("Действие с id {ActionId} не найдено в базе данных.", id);
+            logger.LogError("Действие с id {TargetActionId} не найдено в базе данных.", id);
             return Result.Failure<Action>(new Error(Errors.NotFound, $"Действие с id {id} не найдено в базе данных."));
         }
-        catch(Exception ex)
+        catch(Exception)
         {
-            logger.LogError("Ошибка при получении действия с id {ActionId} из базы данных.", id);
-            return Result.Failure<Action>(new Error(Errors.InternalServerError, "Ошибка при получении действия из базы данных."));
+            logger.LogError("Ошибка при получении действия с id {TargetActionId} из базы данных.", id);
+            return Result.Failure<Action>(new Error(Errors.InternalServerError, $"Ошибка при получении действия с id {id} из базы данных."));
         }
     }
 
@@ -91,7 +91,7 @@ public class ActionRepository(RolePolicyDbContext dbContext, ILogger<ActionRepos
     {
         try
         {
-            logger.LogInformation("Обновление действия с id {ActionId} из базы данных.", id);
+            logger.LogInformation("Обновление действия в базе данных.");
             var entity = await dbContext.Actions.FindAsync(id);
             if (entity != null)
             {
@@ -100,16 +100,16 @@ public class ActionRepository(RolePolicyDbContext dbContext, ILogger<ActionRepos
                 entity.DescriptionKk = descriptionKk ?? entity.DescriptionKk;
                 entity.DescriptionEn = descriptionEn ?? entity.DescriptionEn;
                 await dbContext.SaveChangesAsync();
-                logger.LogInformation("Действие с id {ActionId} обновлено в базе данных.", id);
+                logger.LogInformation("Действие с id {TargetActionId} обновлено в базе данных.", id);
                 return Result.Success(entity);
             }
-            logger.LogError("Действие с id {ActionId} не найдено в базе данных.", id);
+            logger.LogError("Действие с id {TargetActionId} не найдено в базе данных.", id);
             return Result.Failure(new Error(Errors.NotFound, $"Действие с id {id} не найдено в базе данных."));
         }
-        catch( Exception ex )
+        catch( Exception)
         {
-            logger.LogError("Ошибка при обновлении действия с id {ActionId} в базе данных.", id);
-            return Result.Failure(new Error(Errors.InternalServerError, "Ошибка при обновлении действия в базе данных."));
+            logger.LogError("Ошибка при обновлении действия с id {TargetActionId} в базе данных.", id);
+            return Result.Failure(new Error(Errors.InternalServerError, $"Ошибка при обновлении действия с id {id} в базе данных."));
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using KDS.Primitives.FluentResult;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using RolePolicy.Domain.Commom.Exceptions;
 using RolePolicy.Domain.Interfaces;
 using Action = RolePolicy.Domain.Entities.Action;
 
@@ -15,7 +14,7 @@ public class GetActionListQueryHandler(IActionRepository actionRepository, ILogg
         var records = await actionRepository.GetAllAsync();
         if (records.IsFailed)
         {
-            logger.LogError("Ошибка [{ErrorCode}] при обработке запроса на получение действия.", records.Error.Code);
+            logger.LogError("Ошибка [{ErrorCode}] при обработке запроса на получение полного списка действий из базы данных.", records.Error.Code);
             return Result.Failure<List<Action>>(records.Error);
         }
         logger.LogInformation("Запрос успешно обработан.");

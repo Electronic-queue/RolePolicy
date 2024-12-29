@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using KDS.Primitives.FluentResult;
+using Microsoft.AspNetCore.Mvc;
 using RolePolicy.Application.Resources.Commands.CreateResource;
 using RolePolicy.Application.Resources.Commands.DeleteResource;
 using RolePolicy.Application.Resources.Commands.UpdateResource;
@@ -23,17 +24,23 @@ public class ResourceController : BaseController
     /// </summary>
     /// <returns>Возвращает список всех ресурсов.</returns>
     [HttpGet]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<List<ResourceListVm>>> GetAll()
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResourceListVm))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Result))]
+    public async Task<IActionResult> GetAll()
     {
-        var query = new GetRoleAccessListQuery();
-        var result = await Mediator.Send(query);
-        if (result.IsFailed)
+        var scope = new Dictionary<string, object>();
+        using (_logger.BeginScope(scope))
         {
-            return ProblemResponse(result.Error);
+            _logger.LogInformation("Отправка запроса на чтение полного списка ресурсов.");
+            var result = await Mediator.Send(new GetResourceListQuery());
+            if (result.IsFailed)
+            {
+                _logger.LogError("Запрос вернул ошибку [{ErrorCode}] [{ErrorMessage}].", result.Error.Code, result.Error.Message);
+                return ProblemResponse(result.Error);
+            }
+            _logger.LogInformation("Запрос прошел успешно.");
+            return Ok(result);
         }
-        return Ok(result);
     }
 
     /// <summary>
@@ -42,19 +49,25 @@ public class ResourceController : BaseController
     /// <param name="id"></param>
     /// <returns>Возвращает ресурс по id.</returns>
     [HttpGet("{id}")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<ResourceByIdVm>> GetById(int id)
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResourceByIdVm))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(Result))]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(Result))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Result))]
+    public async Task<IActionResult> GetById(int id)
     {
-        var query = new GetResourceByIdQuery(id);
-        var result = await Mediator.Send(query);
-        if (result.IsFailed)
+        var scope = new Dictionary<string, object> { { "TargetResourceId", id } };
+        using (_logger.BeginScope(scope))
         {
-            return ProblemResponse(result.Error);
+            _logger.LogInformation("Отправка запроса на чтение ресурса.");
+            var result = await Mediator.Send(new GetResourceByIdQuery(id));
+            if (result.IsFailed)
+            {
+                _logger.LogError("Запрос вернул ошибку [{ErrorCode}] [{ErrorMessage}].", result.Error.Code, result.Error.Message);
+                return ProblemResponse(result.Error);
+            }
+            _logger.LogInformation("Запрос прошел успешно.");
+            return Ok(result);
         }
-        return Ok(result);
     }
 
     /// <summary>
@@ -63,18 +76,24 @@ public class ResourceController : BaseController
     /// <param name="createResourceDto"></param>
     /// <returns>Возвращает результат команды добавления нового ресурса.</returns>
     [HttpPost]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult> Create([FromBody] CreateResourceDto createResourceDto)
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Result))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(Result))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Result))]
+    public async Task<IActionResult> Create([FromBody] CreateResourceDto createResourceDto)
     {
-        var command = Mapper.Map<CreateResourceCommand>(createResourceDto);
-        var result = await Mediator.Send(command);
-        if (result.IsFailed)
+        var scope = new Dictionary<string, object>() { { "TargetName", createResourceDto.Name } };
+        using (_logger.BeginScope(scope))
         {
-            return ProblemResponse(result.Error);
+            _logger.LogInformation("Отправка запроса на создание ресурса.");
+            var result = await Mediator.Send(Mapper.Map<CreateResourceCommand>(createResourceDto));
+            if (result.IsFailed)
+            {
+                _logger.LogError("Запрос вернул ошибку [{ErrorCode}] [{ErrorMessage}].", result.Error.Code, result.Error.Message);
+                return ProblemResponse(result.Error);
+            }
+            _logger.LogInformation("Запрос прошел успешно.");
+            return Ok(result);
         }
-        return Ok(result);
     }
 
     /// <summary>
@@ -83,19 +102,25 @@ public class ResourceController : BaseController
     /// <param name="updateResourceDto"></param>
     /// <returns>Возвращает результат выполнения команды обновления ресурса.</returns>
     [HttpPut]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Result))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(Result))]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(Result))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Result))]
     public async Task<IActionResult> Update([FromBody] UpdateResourceDto updateResourceDto)
     {
-        var command = Mapper.Map<UpdateResourceCommand>(updateResourceDto);
-        var result = await Mediator.Send(command);
-        if (result.IsFailed)
+        var scope = new Dictionary<string, object>() { { "TargetResourceId", updateResourceDto.Id } };
+        using (_logger.BeginScope(scope))
         {
-            return ProblemResponse(result.Error);
+            _logger.LogInformation("Отправка запроса на обновление ресурса.");
+            var result = await Mediator.Send(Mapper.Map<UpdateResourceCommand>(updateResourceDto));
+            if (result.IsFailed)
+            {
+                _logger.LogError("Запрос вернул ошибку [{ErrorCode}] [{ErrorMessage}].", result.Error.Code, result.Error.Message);
+                return ProblemResponse(result.Error);
+            }
+            _logger.LogInformation("Запрос прошел успешно.");
+            return Ok(result);
         }
-        return Ok(result);
     }
 
     /// <summary>
@@ -104,17 +129,23 @@ public class ResourceController : BaseController
     /// <param name="id"></param>
     /// <returns>Возвращает результат удаления ресурса.</returns>
     [HttpDelete("{id}")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Result))]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(Result))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Result))]
     public async Task<IActionResult> Delete(int id)
     {
-        var command = new DeleteResourceCommand(id);
-        var result = await Mediator.Send(command);
-        if (result.IsFailed)
+        var scope = new Dictionary<string, object>() { { "TargetResourceId", id } };
+        using (_logger.BeginScope(scope))
         {
-            return ProblemResponse(result.Error);
+            _logger.LogInformation("Отправка запроса на удаление ресурса.");
+            var result = await Mediator.Send(new DeleteResourceCommand(id));
+            if (result.IsFailed)
+            {
+                _logger.LogError("Запрос вернул ошибку [{ErrorCode}] [{ErrorMessage}].", result.Error.Code, result.Error.Message);
+                return ProblemResponse(result.Error);
+            }
+            _logger.LogInformation("Запрос прошел успешно.");
+            return Ok(result);
         }
-        return Ok(result);
     }
 }

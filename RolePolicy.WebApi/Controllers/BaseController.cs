@@ -25,6 +25,7 @@ public abstract class BaseController : ControllerBase
             "501" => Problem(title: "Not Implemented", detail: error.Message, statusCode: (int)HttpStatusCode.NotImplemented),
             "502" => Problem(title: "Bad Gateway", detail: error.Message, statusCode: (int)HttpStatusCode.BadGateway),
             "503" => Problem(title: "Service Unavailable", detail: error.Message, statusCode: (int)HttpStatusCode.ServiceUnavailable),
+            _ => Problem(title: "Not Excepted Error", detail: error.Message, statusCode: (int)HttpStatusCode.InternalServerError)
         };
     }
 }
