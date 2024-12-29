@@ -15,7 +15,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[RolePolicy.Application.Actions.Queries.GetActionList.ActionListVm, RolePolicy.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "RolePolicy.Application.Actions.Queries.GetActionList.ActionListVm",
         "MediaTypes": [
           "application/json"
         ],
@@ -144,7 +144,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "RolePolicy.Application.Actions.Queries.GetActionList.ActionListVm",
+        "Type": "RolePolicy.Application.Actions.Queries.GetActionById.ActionByIdVm",
         "MediaTypes": [
           "application/json"
         ],
@@ -232,15 +232,17 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[RolePolicy.Application.Resources.Queries.GetResourceList.ResourceListVm, RolePolicy.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "RolePolicy.Application.Resources.Queries.GetResourceList.ResourceListVm",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 200
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 500
       }
     ]
@@ -266,20 +268,24 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 200
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "KDS.Primitives.FluentResult.Result",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 400
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 500
       }
     ]
@@ -305,27 +311,31 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 200
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "KDS.Primitives.FluentResult.Result",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 400
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "KDS.Primitives.FluentResult.Result",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 404
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 500
       }
     ]
@@ -358,22 +368,24 @@
         "StatusCode": 200
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "KDS.Primitives.FluentResult.Result",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 400
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "KDS.Primitives.FluentResult.Result",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 404
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 500
       }
     ]
@@ -399,20 +411,24 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 200
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "KDS.Primitives.FluentResult.Result",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 404
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 500
       }
     ]
@@ -433,15 +449,17 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[RolePolicy.Application.Roles.Queries.GetRoleList.RoleListVm, RolePolicy.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "RolePolicy.Application.RoleAccesses.Queries.GetRoleAccessList.RoleAccessListVm",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 200
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 500
       }
     ]
@@ -467,20 +485,24 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 200
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "KDS.Primitives.FluentResult.Result",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 400
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 500
       }
     ]
@@ -506,27 +528,31 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 200
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "KDS.Primitives.FluentResult.Result",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 400
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "KDS.Primitives.FluentResult.Result",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 404
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 500
       }
     ]
@@ -559,22 +585,24 @@
         "StatusCode": 200
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "KDS.Primitives.FluentResult.Result",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 400
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "KDS.Primitives.FluentResult.Result",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 404
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 500
       }
     ]
@@ -600,20 +628,24 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 200
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "KDS.Primitives.FluentResult.Result",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 404
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 500
       }
     ]
@@ -634,15 +666,17 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[RolePolicy.Application.RoleAccesses.Queries.GetRoleAccessList.RoleAccessListVm, RolePolicy.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "RolePolicy.Application.RoleAccesses.Queries.GetRoleAccessList.RoleAccessListVm",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 200
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 500
       }
     ]
@@ -668,20 +702,24 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 200
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "KDS.Primitives.FluentResult.Result",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 400
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 500
       }
     ]
@@ -707,27 +745,31 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 200
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "KDS.Primitives.FluentResult.Result",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 400
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "KDS.Primitives.FluentResult.Result",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 404
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 500
       }
     ]
@@ -760,22 +802,24 @@
         "StatusCode": 200
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "KDS.Primitives.FluentResult.Result",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 400
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "KDS.Primitives.FluentResult.Result",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 404
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 500
       }
     ]
@@ -801,20 +845,24 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 200
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "KDS.Primitives.FluentResult.Result",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 404
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 500
       }
     ]
@@ -835,15 +883,17 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[RolePolicy.Application.RoleResourceActions.Queries.GetRoleResourceActionList.RoleResourceActionListVm, RolePolicy.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "RolePolicy.Application.RoleResourceActions.Queries.GetRoleResourceActionList.RoleResourceActionListVm",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 200
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 500
       }
     ]
@@ -869,20 +919,24 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 200
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "KDS.Primitives.FluentResult.Result",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 400
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 500
       }
     ]
@@ -908,27 +962,31 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 200
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "KDS.Primitives.FluentResult.Result",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 400
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "KDS.Primitives.FluentResult.Result",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 404
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 500
       }
     ]
@@ -961,22 +1019,24 @@
         "StatusCode": 200
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "KDS.Primitives.FluentResult.Result",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 400
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "KDS.Primitives.FluentResult.Result",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 404
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 500
       }
     ]
@@ -1002,20 +1062,24 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 200
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "KDS.Primitives.FluentResult.Result",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 404
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 500
       }
     ]
@@ -1036,15 +1100,17 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[RolePolicy.Application.Users.Queries.GetUserList.UserListVm, RolePolicy.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "RolePolicy.Application.Users.Queries.GetUserList.UserListVm",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 200
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 500
       }
     ]
@@ -1070,20 +1136,24 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 200
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "KDS.Primitives.FluentResult.Result",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 400
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 500
       }
     ]
@@ -1109,27 +1179,31 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 200
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "KDS.Primitives.FluentResult.Result",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 400
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "KDS.Primitives.FluentResult.Result",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 404
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 500
       }
     ]
@@ -1162,22 +1236,24 @@
         "StatusCode": 200
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "KDS.Primitives.FluentResult.Result",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 400
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "KDS.Primitives.FluentResult.Result",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 404
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 500
       }
     ]
@@ -1203,20 +1279,24 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 200
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "Type": "KDS.Primitives.FluentResult.Result",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 404
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "KDS.Primitives.FluentResult.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 500
       }
     ]

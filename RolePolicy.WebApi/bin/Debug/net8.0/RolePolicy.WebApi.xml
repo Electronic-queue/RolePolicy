@@ -142,37 +142,37 @@
         </member>
         <member name="M:RolePolicy.WebApi.Controllers.RoleResourceActionController.GetAll">
             <summary>
-            Получение списка всех связей роли и действий над ресурсами.
+            Получение списка всех связей роли и действия над ресурсом.
             </summary>
-            <returns>Возвращает список всех связей роли и действий над ресурсами.</returns>
+            <returns>Возвращает список всех связей роли и действия над ресурсом.</returns>
         </member>
         <member name="M:RolePolicy.WebApi.Controllers.RoleResourceActionController.GetById(System.Int32)">
             <summary>
-            Получение связи роли и действий над ресурсами по id.
+            Получение связи роли и действия над ресурсом по id.
             </summary>
             <param name="id"></param>
-            <returns>Возвращает связь роли и действий над ресурсами по id.</returns>
+            <returns>Возвращает связь роли и действия над ресурсом по id.</returns>
         </member>
         <member name="M:RolePolicy.WebApi.Controllers.RoleResourceActionController.Create(RolePolicy.WebApi.Contracts.RoleResourceActionsContracts.CreateRoleResourceActionDto)">
             <summary>
-            Создание новой связи роли и действий над ресурсами.
+            Создание новой связи роли и действия над ресурсом.
             </summary>
             <param name="createRoleResourceActionDto"></param>
-            <returns>Возвращает результат команды добавления новой связи роли и действий над ресурсами.</returns>
+            <returns>Возвращает результат команды добавления новой связи роли и действия над ресурсом.</returns>
         </member>
         <member name="M:RolePolicy.WebApi.Controllers.RoleResourceActionController.Update(RolePolicy.WebApi.Contracts.RoleResourceActionsContracts.UpdateRoleResourceActionDto)">
             <summary>
-            Обновление информации о связи роли и действий над ресурсами.
+            Обновление информации о связи роли и действия над ресурсом.
             </summary>
             <param name="updateRoleResourceActionDto"></param>
-            <returns>Возвращает результат выполнения команды обновления связи роли и действий над ресурсами.</returns>
+            <returns>Возвращает результат выполнения команды обновления связи роли и действия над ресурсом.</returns>
         </member>
         <member name="M:RolePolicy.WebApi.Controllers.RoleResourceActionController.Delete(System.Int32)">
             <summary>
-            Удаление связи роли и действий над ресурсами по id.
+            Удаление связи роли и действия над ресурсом по id.
             </summary>
             <param name="id"></param>
-            <returns>Возвращает результат удаления связи роли и действий над ресурсами.</returns>
+            <returns>Возвращает результат удаления связи роли и действия над ресурсом.</returns>
         </member>
         <member name="M:RolePolicy.WebApi.Controllers.UserController.GetAll">
             <summary>
