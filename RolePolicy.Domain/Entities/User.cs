@@ -1,4 +1,6 @@
-﻿namespace RolePolicy.Domain.Entities;
+﻿using System.Text.Json.Serialization;
+
+namespace RolePolicy.Domain.Entities;
 
 public partial class User
 {
@@ -21,9 +23,9 @@ public partial class User
     public bool IsDeleted { get; set; }
 
     public virtual ICollection<Action> Actions { get; set; } = new List<Action>();
-
+    [JsonIgnore]
     public virtual User? CreatedByNavigation { get; set; }
-
+    [JsonIgnore]
     public virtual ICollection<User> InverseCreatedByNavigation { get; set; } = new List<User>();
 
     public virtual ICollection<Resource> Resources { get; set; } = new List<Resource>();

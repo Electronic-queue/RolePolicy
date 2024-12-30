@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RolePolicy.Persistence")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7f6e02696f5faf55dc32d1d0f89dd9907208331b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+773261aeff7b60ab7ac78b21903d9377e5bdcf93")]
 [assembly: System.Reflection.AssemblyProductAttribute("RolePolicy.Persistence")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RolePolicy.Persistence")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

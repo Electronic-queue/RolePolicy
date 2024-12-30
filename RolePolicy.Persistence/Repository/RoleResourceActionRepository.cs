@@ -55,7 +55,7 @@ public class RoleResourceActionRepository(RolePolicyDbContext dbContext, ILogger
     {
         try
         {
-            logger.LogInformation("Получение полного списка связей роли и действия над ресурсом из базы данных.");
+             logger.LogInformation("Получение полного списка связей роли и действия над ресурсом из базы данных.");
             var entities = await dbContext.RoleResourceActions.ToListAsync();
             logger.LogInformation("Полный список связей роли и действия над ресурсом получен из базы данных.");
             return Result.Success(entities);

@@ -15,7 +15,7 @@ namespace RolePolicy.WebApi.Controllers;
 public class RoleResourceActionController : BaseController
 {
     private readonly ILogger<RoleResourceActionController> _logger;
-    public RoleResourceActionController(Logger<RoleResourceActionController> logger)
+    public RoleResourceActionController(ILogger<RoleResourceActionController> logger)
     {
         _logger = logger;
     }
