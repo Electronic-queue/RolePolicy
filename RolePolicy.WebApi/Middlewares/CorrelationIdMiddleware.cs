@@ -1,34 +1,52 @@
-﻿namespace RolePolicy.WebApi.Middlewares;
+﻿using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Mvc;
+using Serilog.Context;
 
-public class CorrelationIdMiddleware
+public class CorrelationIdMiddleware : IMiddleware
 {
-    private readonly RequestDelegate _next;
-    private readonly ILogger<CorrelationIdMiddleware> _logger;
+    private readonly IProblemDetailsService _problemDetailsService;
+    private string correlationId;
 
-    public CorrelationIdMiddleware(RequestDelegate next, ILogger<CorrelationIdMiddleware> logger)
+    public CorrelationIdMiddleware(IProblemDetailsService problemDetailsService)
     {
-        _next = next;
-        _logger = logger;
+        ArgumentNullException.ThrowIfNull(problemDetailsService);
+        _problemDetailsService = problemDetailsService;
     }
 
-    public async Task InvokeAsync(HttpContext context)
+    public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {
-        var correlationId = context.Request.Headers["X-Correlation-ID"].FirstOrDefault();
+        if (context.Request.Headers.TryGetValue("X-Correlation-Id", out var values))
+        {
+            correlationId = values.First()!;
+            if (correlationId.Length > 128)
+            {
+                var problemDetails = new ProblemDetails
+                {
+                    Title = "Validation Error",
+                    Status = StatusCodes.Status400BadRequest,
+                    Detail = "CorrelationId exceeded max length of 128 chars",
+                    Instance = context.Request.Path
+                };
 
-        if (string.IsNullOrEmpty(correlationId))
+                context.Response.StatusCode = StatusCodes.Status400BadRequest;
+                context.Response.ContentType = "application/json";
+                await context.Response.WriteAsJsonAsync(problemDetails);
+                return;
+            }
+
+            context.TraceIdentifier = correlationId;
+        }
+        else
         {
             correlationId = Guid.NewGuid().ToString();
+            context.Request.Headers.Append("X-Correlation-Id", correlationId);
         }
-
-        context.Response.OnStarting(() =>
+        var activityFeature = context.Features.GetRequiredFeature<IHttpActivityFeature>();
+        var activity = activityFeature.Activity;
+        activity.AddTag("correlationId", context.TraceIdentifier);
+        using (LogContext.PushProperty("CorrelationId", correlationId))
         {
-            context.Response.Headers["X-Correlation-ID"] = correlationId;
-            return Task.CompletedTask;
-        });
-
-        _logger.LogInformation($"CorrelationId: {correlationId}");
-
-        context.Items["CorrelationId"] = correlationId;
-        await _next(context);
+            await next(context);
+        }
     }
 }

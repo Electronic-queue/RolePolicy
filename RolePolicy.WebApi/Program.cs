@@ -34,8 +34,7 @@ builder.Services.AddAutoMapper(config =>
 });
 
 builder.Services.AddApplication();
-/*builder.Services.AddPersistence(builder.Configuration);
-
+/*
 builder.Services.AddDbContext<QueuesDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 */
@@ -53,18 +52,8 @@ builder.Services.AddHttpContextAccessor();
 builder.Host.UseSerilog((context, config) => config.ReadFrom.Configuration(context.Configuration));
 
 builder.Services.AddControllers();
-//
-//builder.Services.AddHttpContextAccessor();
-//builder.Host.UseSerilog((context, config) =>
-//{
-//    config.MinimumLevel.Information()
-//    .MinimumLevel.Override("Microsoft.AspNetCore", Serilog.Events.LogEventLevel.Warning)
-//    .Enrich.WithCorrelationId()
-//    .WriteTo.Debug(outputTemplate: "[{Timestamp:yyyy-MM-ddd HH:mm:ss.fff} {CorrelstionId} {Level:u3}] {Message.lj}{NewLine}{exception}")
-//    .WriteTo.Console(outputTemplate: "[{Timestamp:yyyy-MM-ddd HH:mm:ss.fff} {CorrelstionId} {Level:u3}] {Message.lj}{NewLine}{exception}")
-//    .WriteTo.Seq("http://localhost:5341");
+builder.Services.AddProblemDetails();
 
-//});
 builder.Services.AddSwaggerGen(config =>
 {
     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -73,6 +62,7 @@ builder.Services.AddSwaggerGen(config =>
 });
 builder.Services.AddVersionedApiExplorer(options =>
                 options.GroupNameFormat = "'v'VVV");
+builder.Services.AddTransient<CorrelationIdMiddleware>();
 builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>,
         ConfigureSwaggerOptions>();
 builder.Services.AddApiVersioning();
@@ -121,9 +111,7 @@ app.UseHttpsRedirection();
 app.UseCors("AllowAll");
 app.UseRouting();
 app.UseApiVersioning();
-//
 app.UseSerilogRequestLogging();
-//
 app.MapControllers();
 
 
